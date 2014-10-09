@@ -10,7 +10,6 @@ namespace AppointmentReminder.Controllers
 	{
 		public ActionResult Index()
 		{
-			string s = "hello";
 			ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
 			return View();
