@@ -1,0 +1,59 @@
+﻿@model  AppointmentReminder.Models.ProfileModel
+
+@{
+    ViewBag.Title = "My Profile";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+	@if (Model == null)
+	{
+	 <p>
+		@Html.ActionLink("Create New", "Create")
+		 </p>
+	}
+	else
+	{
+
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+	    <th>
+		    @Html.DisplayNameFor(model => model.LastName)
+	    </th>
+		        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+		        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th></th>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => Model.FirstName)
+        </td>
+	    <td>
+		    @Html.DisplayFor(modelItem => Model.LastName)
+	    </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.EmailAddress)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) 
+        </td>
+    </tr>
+
+
+</table>
+	 		
+	 
+	}

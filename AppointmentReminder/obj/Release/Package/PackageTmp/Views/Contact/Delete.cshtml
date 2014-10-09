@@ -1,0 +1,56 @@
+﻿@model AppointmentReminder.Models.ContactModel
+
+@{
+    ViewBag.Title = "Contact - Delete";
+}
+
+<h2>@ViewBag.Title </h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+	<legend>ContactModel</legend>
+	
+			@Html.HiddenFor(model => model.ProfileId)
+
+	<div class="display-label">
+         @Html.DisplayNameFor(model => model.ProfileId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProfileId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PhoneNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PhoneNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EmailAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EmailAddress)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

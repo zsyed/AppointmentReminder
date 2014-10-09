@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="AppointmentReminder" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\practice\\Match\\Match\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\practice\\Match\\Match\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=(LocalDb)\v11.0;Initial Catalog=ReminderDb;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\Reminder.mdf" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\practice\\Match\\Match\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

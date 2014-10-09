@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>StructureMap-MVC3</id>
+    <version>1.0.8</version>
+    <title>StructureMap-MVC3</title>
+    <authors>Web Advanced</authors>
+    <owners>Web Advanced</owners>
+    <projectUrl>https://github.com/webadvanced/Structuremap-MVC3</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An MVC3 IDependencyResolver - Deprecated, use StructureMap.MVC3</description>
+    <summary>An MVC3 IDependencyResolver - Deprecated, use StructureMap.MVC3</summary>
+    <tags>structuremap IoC IDependencyResolver MVC</tags>
+    <dependencies>
+      <dependency id="StructureMap.MVC3" version="1.0.8" />
+    </dependencies>
+  </metadata>
+</package>

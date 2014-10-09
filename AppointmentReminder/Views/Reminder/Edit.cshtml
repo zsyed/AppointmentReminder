@@ -1,0 +1,73 @@
+﻿@model AppointmentReminder.Models.ReminderModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ReminderModel</legend>
+
+        @Html.HiddenFor(model => model.Id)
+		
+		
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ContactId)
+        </div>
+        <div class="editor-field">
+    @(Html.Kendo().ComboBoxFor(model => model.ContactId)
+          .Name("ContactId")
+          .DataTextField("Text")
+          .DataValueField("Value")
+		  .Placeholder("Select Contact Name...")
+          .DataSource(source => {
+              source.Read(read =>
+              {
+                  read.Action("GetContacts", "Contact");
+              }); 
+          })
+    )
+        </div>
+
+	    <div class="editor-label">
+            @Html.LabelFor(model => model.ReminderDateTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ReminderDateTime)
+            @Html.ValidationMessageFor(model => model.ReminderDateTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Message)
+        </div>
+	    <div class="editor-field">
+			@(Html.Kendo().Editor()
+				.Name("Message")
+			)
+	    </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sent)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Sent)
+            @Html.ValidationMessageFor(model => model.Sent)
+        </div>
+
+	    <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

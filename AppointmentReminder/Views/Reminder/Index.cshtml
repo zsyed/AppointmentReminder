@@ -1,0 +1,50 @@
+﻿@model IEnumerable<AppointmentReminder.Models.ReminderModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Reminders</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+		<th>
+            @Html.DisplayNameFor(model => model.ContactName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReminderDateTime)
+        </th>
+	    <th>
+		    @Html.DisplayNameFor(model => model.Message)
+	    </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sent)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReminderDateTime)
+        </td>
+	    <td>
+		    @Html.DisplayFor(modelItem => item.Message)
+	    </td>
+        <th>
+            @Html.DisplayFor(modelItem => item.Sent)
+        </th>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

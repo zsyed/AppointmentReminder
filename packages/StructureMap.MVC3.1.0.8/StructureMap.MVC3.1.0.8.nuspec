@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>StructureMap.MVC3</id>
+    <version>1.0.8</version>
+    <title>StructureMap.MVC3</title>
+    <authors>Web Advanced</authors>
+    <owners>Web Advanced</owners>
+    <projectUrl>https://github.com/webadvanced/Structuremap-MVC3</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Adds the latest version of structuremap and configures it as the default Dependency Resolver.</description>
+    <summary>An MVC3 IDependencyResolver wrapper for Structuremap 2.x</summary>
+    <dependencies>
+      <dependency id="structuremap" version="2.6.2.0" />
+      <dependency id="WebActivator" version="1.4.2" />
+    </dependencies>
+  </metadata>
+</package>
