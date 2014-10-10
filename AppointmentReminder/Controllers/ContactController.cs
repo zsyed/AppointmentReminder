@@ -37,7 +37,7 @@ namespace Appointmentcontact.Controllers
 						FirstName = contact.FirstName, 
 						LastName = contact.LastName, 
 						Active = contact.Active, 
-						PhoneNumber = contact.PhoneNumber+"1",
+						PhoneNumber = contact.PhoneNumber,
 						EmailAddress = contact.EmailAddress,
 						SendEmail = contact.SendEmail,
 						SendSMS = contact.SendSMS
