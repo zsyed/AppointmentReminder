@@ -36,8 +36,10 @@
             @Html.LabelFor(model => model.PhoneNumber)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.PhoneNumber)
-            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        @*            @Html.EditorFor(model => model.PhoneNumber)*@
+          
+			@(Html.Kendo().MaskedTextBox().Name("PhoneNumber").Mask("(999) 000-0000").Value(Model.PhoneNumber))
+			  @Html.ValidationMessageFor(model => model.PhoneNumber)
         </div>
 
         <div class="editor-label">

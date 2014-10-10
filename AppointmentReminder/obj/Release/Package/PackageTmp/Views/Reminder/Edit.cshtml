@@ -14,22 +14,7 @@
         <legend>ReminderModel</legend>
 
         @Html.HiddenFor(model => model.Id)
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ReminderDateTime)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ReminderDateTime)
-            @Html.ValidationMessageFor(model => model.ReminderDateTime)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Message)
-        </div>
-	    <div class="editor-field">
-		    @Html.EditorFor(model => model.Message)
-		    @Html.ValidationMessageFor(model => model.Message)
-	    </div>
+		
 		
         <div class="editor-label">
             @Html.LabelFor(model => model.ContactId)
@@ -49,6 +34,22 @@
     )
         </div>
 
+	    <div class="editor-label">
+            @Html.LabelFor(model => model.ReminderDateTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ReminderDateTime)
+            @Html.ValidationMessageFor(model => model.ReminderDateTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Message)
+        </div>
+	    <div class="editor-field">
+			@(Html.Kendo().Editor()
+				.Name("Message")
+			)
+	    </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.Sent)
         </div>

@@ -46,8 +46,8 @@
             @Html.DisplayFor(modelItem => item.LastName)
         </td>
         <td>
-	        @*@Html.DisplayFor(modelItem => item.PhoneNumber)*@
-			@(Html.Kendo().MaskedTextBox().Name("PhoneNumber").Value(item.PhoneNumber).Mask("(999) 000-0000").Enable(false))
+	        @Html.DisplayFor(modelItem => item.PhoneNumber)
+@*			@(Html.Kendo().MaskedTextBox().Name("PhoneNumber").Value(item.PhoneNumber).Mask("(999) 000-0000").Enable(false))*@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.EmailAddress)
