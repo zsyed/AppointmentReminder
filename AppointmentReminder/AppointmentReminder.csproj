@@ -228,6 +228,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\ProfileModel.cs" />
+    <Compile Include="Models\ReminderHistoryModel.cs" />
     <Compile Include="Models\ReminderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -840,6 +841,7 @@
     <Content Include="Views\Contact\Create.cshtml" />
     <Content Include="Views\Contact\Edit.cshtml" />
     <Content Include="Views\Contact\Delete.cshtml" />
+    <Content Include="Views\Reminder\History.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
