@@ -49,7 +49,7 @@ namespace AppointmentReminder.Controllers
 		public ActionResult History()
 		{
 			var profile = _db.Profiles.Where(p => p.UserName == User.Identity.Name).FirstOrDefault();
-			var remindersHistory = new ReminderDb().ReminderHistories.Where(rh => rh.ProfileId == profile.Id).OrderBy(rh => rh.MessageSentDateTime);
+			var remindersHistory = new ReminderDb().ReminderHistories.Where(rh => rh.ProfileId == profile.Id).OrderByDescending(rh => rh.MessageSentDateTime);
 			var reminderHistoryModels = new List<ReminderHistoryModel>();
 			foreach (var reminderHistory in remindersHistory)
 			{
