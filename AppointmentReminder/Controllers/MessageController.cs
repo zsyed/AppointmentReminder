@@ -81,7 +81,7 @@ namespace AppointmentReminder.Controllers
 								reminderHistory.ReminderDateTime = reminder.ReminderDateTime;
 								reminderHistory.ReminderId = reminder.Id;
 								reminderHistory.SMSSent = false;
-								reminderHistory.MessageSentDateTime = DateTime.Now;
+								reminderHistory.MessageSentDateTime = currentDateTime;
 								_db.ReminderHistories.Add(reminderHistory);
 								_db.Save();
 							}
