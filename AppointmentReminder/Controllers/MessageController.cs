@@ -27,7 +27,7 @@ namespace AppointmentReminder.Controllers
 #if DEBUG
 			return DateTime.Now.ToString();
 #else
-			return DateTime.Now.AddHours(prodServerTimeDifference).ToString();
+			return DateTime.Now.AddHours(prodServerTimeDifference).ToString(); 
 #endif
 		}
 
