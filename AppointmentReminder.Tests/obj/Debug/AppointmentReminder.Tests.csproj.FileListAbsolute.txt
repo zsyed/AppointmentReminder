@@ -271,3 +271,7 @@ C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\zh-Hant\Sys
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\obj\Debug\AppointmentReminder.Tests.csprojResolveAssemblyReference.cache
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\obj\Debug\AppointmentReminder.Tests.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\obj\Debug\AppointmentReminder.Tests.pdb
+C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\EntityFramework.SqlServer.dll
+C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Telerik.JustMock.dll
+C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\EntityFramework.SqlServer.xml
+C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Telerik.JustMock.xml
