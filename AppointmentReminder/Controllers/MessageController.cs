@@ -21,6 +21,15 @@ namespace AppointmentReminder.Controllers
 			_db = db;
 		}
 
+		public string CurrentDateTimeValue()
+		{
+#if DEBUG
+			return DateTime.Now.ToString();
+#else
+			return DateTime.Now.AddHours(-7.0).ToString();
+#endif
+		}
+
 		public JsonResult Send()
 		{
 			var contactList = new List<SelectListItem>();
