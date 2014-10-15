@@ -12,7 +12,7 @@ namespace AppointmentReminder.Controllers
     public class MessageController : Controller
     {
         //
-        // GET: /Message/
+        // GET: /Message/ 
 
 		private IReminderDb _db;
 
