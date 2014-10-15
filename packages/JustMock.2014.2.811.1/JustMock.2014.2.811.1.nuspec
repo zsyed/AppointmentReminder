@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>JustMock</id>
+    <version>2014.2.811.1</version>
+    <title>Telerik JustMock Lite</title>
+    <authors>Telerik AD</authors>
+    <owners>Telerik AD</owners>
+    <licenseUrl>http://www.telerik.com/purchase/license-agreement/justmock-free-edition</licenseUrl>
+    <projectUrl>https://github.com/telerik/JustMockLite</projectUrl>
+    <iconUrl>http://www.telerik.com/sfimages/default-source/logos/jm_32x32.png?sfvrsn=2</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>The most powerful free mocking library available for .NET developers.</description>
+    <summary>The most powerful free mocking library available for .NET developers.</summary>
+    <releaseNotes>What's new: 
+
+New: Mock MarshalByRefObject inheritors
+
+What's fixed: 
+
+Fixed: Passing ArgExpr.Ref(ArgExpr.IsAny&lt;string&gt;()) not working
+Fixed: Can't arrange non-inheritable interface members
+Fixed: Partial mocking on property setters fails
+Arranging method to return a null throws NullReferenceException
+Mock.Arrange cannot differ arguments if they inherit the Collection class
+Fixed: Instances implicitly created by MockingContainer can't be asserted</releaseNotes>
+    <copyright>Copyright (c) 2010-2014 Telerik AD</copyright>
+    <language>en-US</language>
+    <tags>tdd mocking mocks mock aaa unittest unittesting unit-testing testing fake faking stub stubbing isolation</tags>
+  </metadata>
+</package>
