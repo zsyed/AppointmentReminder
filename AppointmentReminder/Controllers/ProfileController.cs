@@ -12,52 +12,47 @@ namespace AppointmentReminder.Controllers
 	[Authorize]
 	public class ProfileController : Controller
     {
-
+		private IProfileModel _profileModel;
 		private IReminderDb _db;
 
-		public ProfileController(IReminderDb db)
+		public ProfileController(IReminderDb db, IProfileModel profileModel)
 		{
+			_profileModel = profileModel;
 			_db = db;
 		}
 
 		//
         // GET: /Profile/
 
-        public ActionResult Index()
+        public ViewResult Index()
         {
-
-	        var model = _db.Profiles.Where(p => p.UserName == User.Identity.Name).FirstOrDefault();
-	        ProfileModel profileModel = null;
-	        if (model != null)
+			string userName = User.Identity.Name;
+			var profile = _db.GetProfile(userName); 
+			if (profile != null)
 	        {
-		        profileModel = new ProfileModel()
-			                           {
-				                           Id = model.Id,
-				                           FirstName = model.FirstName,
-				                           LastName = model.LastName,
-										   PhoneNumber = model.PhoneNumber,
-										   EmailAddress = model.EmailAddress
-			                           };
-				return View(profileModel);
+				_profileModel.Id = profile.Id;
+				_profileModel.FirstName = profile.FirstName;
+				_profileModel.LastName = profile.LastName;
+				_profileModel.PhoneNumber = profile.PhoneNumber;
+				_profileModel.EmailAddress = profile.EmailAddress;
 			}
-
-	        return this.View(profileModel);
+			return this.View(_profileModel);
         }
 
         //
         // GET: /Profile/Create
 
-        public ActionResult Create()
+        public ViewResult Create()
         {
-	        var profileModel = new ProfileModel();
-			return View(profileModel);
+	        // var profileModel = new ProfileModel();
+			return View(_profileModel);
         }
 
         //
         // POST: /Profile/Create
 
         [HttpPost]
-        public ActionResult Create(ProfileModel profileModel)
+        public ActionResult Create(IProfileModel profileModel)
         {
 			if (ModelState.IsValid)
 			{
@@ -71,7 +66,9 @@ namespace AppointmentReminder.Controllers
 							EmailAddress = profileModel.EmailAddress
 						});
 				_db.Save();
-				return RedirectToAction("Index");
+				var profile = _db.GetProfile(User.Identity.Name);
+				profileModel.Id = profile.Id;
+				return View("Index", profileModel);
 			}
 
 	        return this.View(profileModel);
@@ -81,29 +78,28 @@ namespace AppointmentReminder.Controllers
         //
         // GET: /Profile/Edit/5
 
-        public ActionResult Edit(int id)
+        public ViewResult Edit(int id)
         {
-			var profile = _db.Profiles.Where(p => p.Id == id).FirstOrDefault();
-	        var profileModel = new ProfileModel() 
-				{ 
-					Id = id, 
-					FirstName = profile.FirstName, 
-					LastName = profile.LastName, 
-					PhoneNumber = profile.PhoneNumber, 
-					EmailAddress = profile.EmailAddress
-				};
-			return View(profileModel);
+			var profile = _db.GetProfile(id);
+			if (profile != null)
+			{
+				_profileModel.Id = id;
+				_profileModel.FirstName = profile.FirstName;
+				_profileModel.LastName = profile.LastName;
+				_profileModel.PhoneNumber = profile.PhoneNumber;
+				_profileModel.EmailAddress = profile.EmailAddress;
+			}
+			return this.View(_profileModel);
         }
 
         //
         // POST: /Profile/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(ProfileModel profileModel)
+        public ViewResult Edit(IProfileModel profileModel)
         {
 			if (ModelState.IsValid)
 			{
-
 				var model = _db.Profiles.Where(p => p.Id == profileModel.Id).FirstOrDefault();
 				model.FirstName = profileModel.FirstName;
 				model.LastName = profileModel.LastName;
@@ -111,7 +107,7 @@ namespace AppointmentReminder.Controllers
 				model.EmailAddress = profileModel.EmailAddress;
 				_db.Save();
 
-                return RedirectToAction("Index");
+                return View("Index", profileModel);
             }
 			return this.View(profileModel);
 

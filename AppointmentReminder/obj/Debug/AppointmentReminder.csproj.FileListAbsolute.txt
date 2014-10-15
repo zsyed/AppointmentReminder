@@ -342,4 +342,6 @@ C:\practice\AppointmentReminder1\AppointmentReminder\bin\zh-Hans\System.Spatial.
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\zh-Hant\System.Spatial.resources.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\obj\Debug\AppointmentReminder.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\obj\Debug\AppointmentReminder.pdb
+C:\practice\AppointmentReminder1\AppointmentReminder\bin\EntityFramework.SqlServer.dll
+C:\practice\AppointmentReminder1\AppointmentReminder\bin\EntityFramework.SqlServer.xml
 C:\practice\AppointmentReminder1\AppointmentReminder\obj\Debug\AppointmentReminder.csprojResolveAssemblyReference.cache

@@ -9,7 +9,6 @@ namespace AppointmentReminder.Data
 
 	public interface IReminderDb
 	{
-
 		DbSet<Profile> Profiles { get; set; }
 
 		DbSet<Reminder> Reminders { get; set; }
@@ -18,7 +17,13 @@ namespace AppointmentReminder.Data
 
 		DbSet<ReminderHistory> ReminderHistories { get; set; }
 
-		void Save();
+		// Profile GetProfile {get; }
 
+		Profile GetProfile(string userName);
+
+		Profile GetProfile(int id);
+
+
+		void Save();
 	}
 }

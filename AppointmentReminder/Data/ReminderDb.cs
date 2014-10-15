@@ -24,6 +24,15 @@ namespace AppointmentReminder.Data
 
 		public DbSet<ReminderHistory> ReminderHistories { get; set; }
 
+		public Profile GetProfile(string userName)  {
+			return Profiles.Where(p => p.UserName == userName).FirstOrDefault(); 
+		}
+
+		public Profile GetProfile(int Id)
+		{
+			return Profiles.Where(p => p.Id == Id).FirstOrDefault();
+		}
+
 		void IReminderDb.Save()
 		{
 			this.SaveChanges();
