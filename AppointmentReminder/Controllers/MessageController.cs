@@ -106,7 +106,7 @@ namespace AppointmentReminder.Controllers
 								reminderHistory.ReminderDateTime = reminder.ReminderDateTime;
 								reminderHistory.ReminderId = reminder.Id;
 								reminderHistory.SMSSent = true;
-								reminderHistory.MessageSentDateTime = DateTime.Now;
+								reminderHistory.MessageSentDateTime = currentDateTime;
 								_db.ReminderHistories.Add(reminderHistory);
 								_db.Save();
 							}
@@ -159,8 +159,6 @@ namespace AppointmentReminder.Controllers
 			var twilio = new TwilioRestClient(AccountSid, AuthToken);
 
 			var messageSent = twilio.SendSmsMessage(fromPhoneNumber, toPhoneNumber, message, "");
-
-			// todo: Log sent Email Message to the table as history.
 		}
 
     }
