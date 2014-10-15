@@ -41,18 +41,16 @@ namespace AppointmentReminder.Controllers
 				foreach (var reminder in reminders)
 				{
 					TimeSpan timeDifference;
-					DateTime currentDateTime;
 #if DEBUG
-					currentDateTime = DateTime.Now;
+					timeDifference = reminder.ReminderDateTime - DateTime.Now;
 #else
-					currentDateTime = DateTime.Now.AddHours(-7.0);
+					timeDifference = reminder.ReminderDateTime - DateTime.Now.AddHours(-7.0);
 #endif
-					timeDifference = reminder.ReminderDateTime - currentDateTime;
 
 					int RemdinerHours = Convert.ToInt32(ConfigurationManager.AppSettings["ReminderHours"]);
 
 
-					if (timeDifference.Seconds > 0 && timeDifference.Hours <= RemdinerHours && reminder.ReminderDateTime.Date.Equals(currentDateTime.Date) && !reminder.Sent)
+					if (timeDifference.Seconds > 0 && timeDifference.Hours <= RemdinerHours && reminder.ReminderDateTime.Date.Equals(DateTime.Now.Date) && !reminder.Sent)
 					{
 						var contact = new ReminderDb().Contacts.Where(c => c.Id == reminder.ContactId).FirstOrDefault();
 						var profile = _db.Profiles.Where(p => p.Id == contact.ProfileId).FirstOrDefault();
@@ -79,7 +77,7 @@ namespace AppointmentReminder.Controllers
 								reminderHistory.ReminderDateTime = reminder.ReminderDateTime;
 								reminderHistory.ReminderId = reminder.Id;
 								reminderHistory.SMSSent = false;
-								reminderHistory.MessageSentDateTime = currentDateTime;
+								reminderHistory.MessageSentDateTime = DateTime.Now;
 								_db.ReminderHistories.Add(reminderHistory);
 								_db.Save();
 							}
@@ -104,7 +102,7 @@ namespace AppointmentReminder.Controllers
 								reminderHistory.ReminderDateTime = reminder.ReminderDateTime;
 								reminderHistory.ReminderId = reminder.Id;
 								reminderHistory.SMSSent = true;
-								reminderHistory.MessageSentDateTime = currentDateTime;
+								reminderHistory.MessageSentDateTime = DateTime.Now;
 								_db.ReminderHistories.Add(reminderHistory);
 								_db.Save();
 							}
