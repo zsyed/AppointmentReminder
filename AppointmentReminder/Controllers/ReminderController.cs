@@ -68,7 +68,7 @@ namespace AppointmentReminder.Controllers
 		}
 
         //
-        // GET: /Reminder/Create
+        // GET: /Reminder/Create 
 
         public ActionResult Create()
         {
