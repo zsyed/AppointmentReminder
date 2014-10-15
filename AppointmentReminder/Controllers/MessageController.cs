@@ -23,34 +23,38 @@ namespace AppointmentReminder.Controllers
 
 		public string CurrentDateTimeValue()
 		{
+			int prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["ProductionServerTimeDifference"]);
 #if DEBUG
 			return DateTime.Now.ToString();
 #else
-			return DateTime.Now.AddHours(-7.0).ToString();
+			return DateTime.Now.AddHours(prodServerTimeDifference).ToString();
 #endif
 		}
 
 		public JsonResult Send()
 		{
 			var contactList = new List<SelectListItem>();
+			DateTime currentDateTime;
 			try
 			{
 				var reminders = new ReminderDb().Reminders;
+				int prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["ProductionServerTimeDifference"]);
 				
 
 				foreach (var reminder in reminders)
 				{
 					TimeSpan timeDifference;
 #if DEBUG
-					timeDifference = reminder.ReminderDateTime - DateTime.Now;
+					currentDateTime = DateTime.Now;
 #else
-					timeDifference = reminder.ReminderDateTime - DateTime.Now.AddHours(-7.0);
+					currentDateTime = DateTime.Now.AddHours(prodServerTimeDifference);
 #endif
 
+					timeDifference = reminder.ReminderDateTime - currentDateTime;
 					int RemdinerHours = Convert.ToInt32(ConfigurationManager.AppSettings["ReminderHours"]);
 
 
-					if (timeDifference.Seconds > 0 && timeDifference.Hours <= RemdinerHours && reminder.ReminderDateTime.Date.Equals(DateTime.Now.Date) && !reminder.Sent)
+					if (timeDifference.Seconds > 0 && timeDifference.Hours <= RemdinerHours && reminder.ReminderDateTime.Date.Equals(currentDateTime.Date) && !reminder.Sent)
 					{
 						var contact = new ReminderDb().Contacts.Where(c => c.Id == reminder.ContactId).FirstOrDefault();
 						var profile = _db.Profiles.Where(p => p.Id == contact.ProfileId).FirstOrDefault();

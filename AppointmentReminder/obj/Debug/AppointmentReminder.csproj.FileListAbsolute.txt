@@ -344,3 +344,4 @@ C:\practice\AppointmentReminder1\AppointmentReminder\obj\Debug\AppointmentRemind
 C:\practice\AppointmentReminder1\AppointmentReminder\obj\Debug\AppointmentReminder.pdb
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\EntityFramework.SqlServer.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\EntityFramework.SqlServer.xml
+C:\practice\AppointmentReminder1\AppointmentReminder\obj\Debug\AppointmentReminder.csprojResolveAssemblyReference.cache
