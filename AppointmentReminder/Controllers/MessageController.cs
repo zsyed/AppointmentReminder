@@ -43,12 +43,29 @@ namespace AppointmentReminder.Controllers
 			try
 			{
 				var reminders = new ReminderDb().Reminders;
-				int prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["PSTProductionServerTimeDifference"]);
+			 
+				
+				//= Convert.ToInt32(ConfigurationManager.AppSettings["PSTProductionServerTimeDifference"]);
+
+
 				
 
 				foreach (var reminder in reminders)
 				{
 					TimeSpan timeDifference;
+
+					var contact = new ReminderDb().Contacts.Where(c => c.Id == reminder.ContactId).FirstOrDefault();
+
+					int prodServerTimeDifference = 0;
+
+					switch (contact.TimeZone)
+					{
+						case "PST": prodServerTimeDifference = -7; break;
+						case "MST": prodServerTimeDifference = -6; break;
+						case "CST": prodServerTimeDifference = -5; break;
+						case "EST": prodServerTimeDifference = -4; break;
+					}
+
 #if DEBUG
 					currentDateTime = DateTime.Now;
 #else
@@ -61,7 +78,7 @@ namespace AppointmentReminder.Controllers
 
 					if (timeDifference.Seconds > 0 && timeDifference.Hours <= RemdinerHours && reminder.ReminderDateTime.Date.Equals(currentDateTime.Date) && !reminder.Sent)
 					{
-						var contact = new ReminderDb().Contacts.Where(c => c.Id == reminder.ContactId).FirstOrDefault();
+
 						var profile = _db.Profiles.Where(p => p.Id == contact.ProfileId).FirstOrDefault();
 						if (contact.Active)
 						{
