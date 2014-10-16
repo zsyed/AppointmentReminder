@@ -25,7 +25,6 @@ namespace AppointmentReminder.Controllers
 		{
 			int prodServerTimeDifference=0;
 
-
 			switch (TimeZone)
 			{
 				case "PST": prodServerTimeDifference = -7; break;
