@@ -21,14 +21,20 @@ namespace AppointmentReminder.Controllers
 			_db = db;
 		}
 
-		public string CurrentDateTimeValue()
+		public string CurrentDateTimeValue(string TimeZone)
 		{
-			int prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["ProductionServerTimeDifference"]);
-#if DEBUG
-			return DateTime.Now.ToString();
-#else
+			int prodServerTimeDifference=0;
+
+
+			switch (TimeZone)
+			{
+				case "PST": prodServerTimeDifference = -7; break;
+				case "MST": prodServerTimeDifference = -6; break;
+				case "CST": prodServerTimeDifference = -5; break;
+				case "EST": prodServerTimeDifference = -4; break;
+			}
+
 			return DateTime.Now.AddHours(prodServerTimeDifference).ToString(); 
-#endif
 		}
 
 		public JsonResult Send()
@@ -38,7 +44,7 @@ namespace AppointmentReminder.Controllers
 			try
 			{
 				var reminders = new ReminderDb().Reminders;
-				int prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["ProductionServerTimeDifference"]);
+				int prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["PSTProductionServerTimeDifference"]);
 				
 
 				foreach (var reminder in reminders)
