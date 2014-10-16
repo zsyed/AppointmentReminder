@@ -1,4 +1,4 @@
-﻿@model  AppointmentReminder.Models.ProfileModel
+﻿@model  AppointmentReminder.Models.IProfileModel
 
 @{
     ViewBag.Title = "My Profile";
@@ -7,7 +7,7 @@
 <h2>@ViewBag.Title</h2>
 
 
-	@if (Model == null)
+	@if (Model == null || ( Model.FirstName == null && Model.LastName == null))
 	{
 	 <p>
 		@Html.ActionLink("Create New", "Create")

@@ -19,6 +19,8 @@ namespace AppointmentReminder.Data
 
 		public virtual string EmailAddress { get; set; }
 
+		public virtual string TimeZone { get; set; }
+
 		public virtual bool Active { get; set; }
 
 		public virtual bool SendEmail { get; set; }

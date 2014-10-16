@@ -228,3 +228,5 @@ C:\practice\AppointmentReminder1\AppointmentReminder\bin\zh-Hant\System.Spatial.
 C:\practice\AppointmentReminder1\AppointmentReminder\obj\Release\AppointmentReminder.csprojResolveAssemblyReference.cache
 C:\practice\AppointmentReminder1\AppointmentReminder\obj\Release\AppointmentReminder.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\obj\Release\AppointmentReminder.pdb
+C:\practice\AppointmentReminder1\AppointmentReminder\bin\EntityFramework.SqlServer.dll
+C:\practice\AppointmentReminder1\AppointmentReminder\bin\EntityFramework.SqlServer.xml

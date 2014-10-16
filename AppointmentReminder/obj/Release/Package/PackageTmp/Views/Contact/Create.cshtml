@@ -31,6 +31,26 @@
             @Html.ValidationMessageFor(model => model.LastName)
         </div>
 
+		        <div class="editor-label">
+            @Html.LabelFor(model => model.TimeZone)
+        </div>
+		  <div class="editor-field">
+
+		    @(Html.Kendo().ComboBoxFor(model => model.TimeZone)
+          .Name("TimeZone")
+          .DataTextField("Text")
+          .DataValueField("Value")
+		  .Placeholder("Select TimeZone...")
+          .DataSource(source => {
+              source.Read(read =>
+              {
+                  read.Action("GetTimeZones", "Contact");
+              }); 
+          })
+    )
+			  			  @Html.ValidationMessageFor(model => model.TimeZone)
+			  </div>
+
         <div class="editor-label">
             @Html.LabelFor(model => model.EmailAddress)
         </div>

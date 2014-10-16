@@ -31,12 +31,22 @@ namespace Appointmentcontact.Controllers
 	        var contactsModel = new List<ContactModel>();
 			foreach (var contact in contacts)
 			{
+				string TimeZone = string.Empty;
+				switch (contact.TimeZone)
+				{
+					case "MST": TimeZone = "Mountain Standard Time"; break;
+					case "PST": TimeZone = "Pacific Standard Time"; break;
+					case "CST": TimeZone = "Central Standard Time"; break;
+					case "EST": TimeZone = "Eastern Standard Time"; break;
+				}
+
 				contactsModel.Add(new ContactModel() 
 					{ 
 						Id = contact.Id, 
 						FirstName = contact.FirstName, 
 						LastName = contact.LastName, 
-						Active = contact.Active, 
+						Active = contact.Active,
+						TimeZone = TimeZone,
 						PhoneNumber = contact.PhoneNumber,
 						EmailAddress = contact.EmailAddress,
 						SendEmail = contact.SendEmail,
@@ -70,6 +80,7 @@ namespace Appointmentcontact.Controllers
 						FirstName = contactModel.FirstName, 
 						LastName = contactModel.LastName, 
 						Active = contactModel.Active, 
+						TimeZone = contactModel.TimeZone,
 						PhoneNumber = contactModel.PhoneNumber,
 						EmailAddress = contactModel.EmailAddress,
 						ProfileId = contactModel.ProfileId,
@@ -98,6 +109,7 @@ namespace Appointmentcontact.Controllers
 					                    ProfileId = contact.ProfileId,
 										LastName = contact.LastName,
 										Active = contact.Active,
+										TimeZone = contact.TimeZone,
 										PhoneNumber = contact.PhoneNumber,
 										EmailAddress = contact.EmailAddress,
 										SendEmail = contact.SendEmail,
@@ -121,6 +133,7 @@ namespace Appointmentcontact.Controllers
 				contact.FirstName = contactModel.FirstName;
 				contact.LastName = contactModel.LastName;
 				contact.Active= contactModel.Active;
+				contact.TimeZone = contactModel.TimeZone;
 				contact.PhoneNumber = rgx.Replace(contactModel.PhoneNumber, "");
 				contact.EmailAddress = contactModel.EmailAddress;
 				contact.SendEmail = contactModel.SendEmail;
@@ -145,6 +158,7 @@ namespace Appointmentcontact.Controllers
 				FirstName = contact.FirstName,
 				ProfileId = contact.ProfileId,
 				LastName = contact.LastName,
+				TimeZone = contact.TimeZone,
 				PhoneNumber = contact.PhoneNumber,
 				EmailAddress = contact.EmailAddress,
 				SendEmail = contact.SendEmail,
@@ -179,6 +193,19 @@ namespace Appointmentcontact.Controllers
 			}
 
 			return Json(contactList, JsonRequestBehavior.AllowGet);
+
+		}
+
+		public JsonResult GetTimeZones()
+		{
+			var timeZoneList = new List<SelectListItem>();
+			timeZoneList.Add(new SelectListItem() { Text = "Pacific Standard Time", Value = Common.TimeZone.PST.ToString() });
+			timeZoneList.Add(new SelectListItem() { Text = "Mountain Standard Time", Value = Common.TimeZone.MST.ToString() });
+			timeZoneList.Add(new SelectListItem() { Text = "Central Standard Time", Value = Common.TimeZone.CST.ToString() });
+			timeZoneList.Add(new SelectListItem() { Text = "Eastern Standard Time", Value = Common.TimeZone.EST.ToString() });
+
+
+			return Json(timeZoneList, JsonRequestBehavior.AllowGet);
 
 		}
 

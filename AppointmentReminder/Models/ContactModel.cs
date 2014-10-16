@@ -29,6 +29,9 @@ namespace AppointmentReminder.Models
 		public string EmailAddress { get; set; }
 
 		[Required]
+		public string TimeZone { get; set; }
+
+		[Required]
 		public bool Active { get; set; }
 
 		[Required]
