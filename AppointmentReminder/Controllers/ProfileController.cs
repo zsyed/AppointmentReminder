@@ -37,17 +37,6 @@ namespace AppointmentReminder.Controllers
         public ViewResult Index()
         {
 			Thread.Sleep(3000);
-			//return View();
-			//var profile1 = _db.GetProfile("");
-			//if (profile != null)
-			//{
-			//	_profileModel.Id = profile.Id;
-			//	_profileModel.FirstName = profile.FirstName;
-			//	_profileModel.LastName = profile.LastName;
-			//	_profileModel.PhoneNumber = profile.PhoneNumber;
-			//	_profileModel.EmailAddress = profile.EmailAddress;
-			//}
-			//// return this.View(_profileModel);
 			return this.View();
         }
 

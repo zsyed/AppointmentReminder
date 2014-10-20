@@ -17,7 +17,7 @@
 <div data-ng-controller ="profileIndexController">
 	
 
-@*	@if (Model == null || ( Model.FirstName == null && Model.LastName == null))
+	@*	@if (Model == null || ( Model.FirstName == null && Model.LastName == null))
 	{
 	 <p>
 		@Html.ActionLink("Create New", "Create")
@@ -29,43 +29,57 @@
 	
 *@
 	
-	<table>
-    <tr>
-        <th>
-            FirstName
-        </th>
-	    <th>
-		    LastName
-	    </th>
-		        <th>
-            Phone Number
-        </th>
-		        <th>
-          Email Address
-        </th>
-        <th></th>
-    </tr>
+	<div ng-if="profile.FirstName == null">
+		
+			 <p>
+		@Html.ActionLink("Create New", "Create")
+		 </p>
+	</div>
+	
 
-    <tr>
-	    <td>
-		    {{profile.FirstName}}
-	    </td>
-	    <td>
-		   {{profile.LastName}}
-	    </td>
-        <td>
-            {{profile.PhoneNumber}}
-        </td>
-        <td>
-             {{profile.EmailAddress}}
-        </td>
-        <td>
-			<a data-ng-href="@Url.Action("Edit", "Edit")/{{profile.Id}}" target="_self">Edit  </a>
-        </td>
-    </tr>
+	<div ng-if="profile.FirstName != null">
+		
 
 
-</table>
+
+		<table>
+			<tr>
+				<th>
+					FirstName
+				</th>
+				<th>
+					LastName
+				</th>
+				<th>
+					Phone Number
+				</th>
+				<th>
+					Email Address
+				</th>
+				<th></th>
+			</tr>
+
+			<tr>
+				<td>
+					{{profile.FirstName}}
+				</td>
+				<td>
+					{{profile.LastName}}
+				</td>
+				<td>
+					{{profile.PhoneNumber}}
+				</td>
+				<td>
+					{{profile.EmailAddress}}
+				</td>
+				<td>
+					<a data-ng-href="@Url.Action("Edit", "Edit")/{{profile.Id}}" target="_self">Edit  </a>
+				</td>
+			</tr>
+
+
+		</table>
+			</div>
 	 		
 	 
 @*	}*@
