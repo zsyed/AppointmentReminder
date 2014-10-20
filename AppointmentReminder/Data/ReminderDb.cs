@@ -24,8 +24,9 @@ namespace AppointmentReminder.Data
 
 		public DbSet<ReminderHistory> ReminderHistories { get; set; }
 
-		public Profile GetProfile(string userName)  {
-			return Profiles.Where(p => p.UserName == userName).FirstOrDefault(); 
+		public Profile GetProfile(string userName)
+		{
+			return Profiles.ToList().Find(p => p.UserName == userName);
 		}
 
 		public Profile GetProfile(int Id)

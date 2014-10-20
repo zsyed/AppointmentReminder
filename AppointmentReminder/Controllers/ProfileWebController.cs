@@ -10,9 +10,15 @@ using AppointmentReminder.Models;
 
 namespace AppointmentReminder.Controllers
 {
-    public class ProfileWebController : ApiController
+	using System.Security.Principal;
+	using System.Threading;
+	using System.Web;
+	[System.Web.Mvc.Authorize]
+	public class ProfileWebController : ApiController
     {
 	    private IReminderDb _db;
+
+		private IIdentityService _identityService;
 
 		public ProfileWebController(IReminderDb db)
 		{
@@ -21,8 +27,6 @@ namespace AppointmentReminder.Controllers
 
 		public object Get()
 		{
-			// var _db = new ReminderDb();
-
 			string userName = User.Identity.Name;
 			var profile = _db.GetProfile(userName);
 			return profile;

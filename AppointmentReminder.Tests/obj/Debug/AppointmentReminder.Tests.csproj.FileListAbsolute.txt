@@ -184,6 +184,8 @@ C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Appointment
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\AppointmentReminder.Tests.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\AppointmentReminder.Tests.pdb
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\AppointmentReminder.dll
+C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\EntityFramework.dll
+C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\EntityFramework.SqlServer.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Microsoft.Data.Edm.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Microsoft.Data.OData.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
@@ -200,13 +202,14 @@ C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.WebPages.Deployment.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.WebPages.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.WebPages.Razor.dll
-C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\EntityFramework.dll
+C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Telerik.JustMock.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.Optimization.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\StructureMap.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\WebActivator.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Microsoft.Web.WebPages.OAuth.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\DotNetOpenAuth.AspNet.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Twilio.Api.dll
+C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\WebApiContrib.IoC.StructureMap.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\DotNetOpenAuth.Core.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\DotNetOpenAuth.OAuth.Consumer.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\DotNetOpenAuth.OAuth.dll
@@ -214,6 +217,8 @@ C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\DotNetOpenA
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\DotNetOpenAuth.OpenId.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\RestSharp.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\AppointmentReminder.pdb
+C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\EntityFramework.xml
+C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\EntityFramework.SqlServer.xml
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Newtonsoft.Json.xml
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Net.Http.Formatting.xml
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.Helpers.xml
@@ -228,7 +233,7 @@ C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Microsoft.Data.Edm.xml
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Microsoft.Data.OData.xml
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Spatial.xml
-C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\EntityFramework.xml
+C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Telerik.JustMock.xml
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\StructureMap.pdb
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\StructureMap.xml
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Microsoft.Web.WebPages.OAuth.xml
@@ -271,7 +276,3 @@ C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\zh-Hant\Sys
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\obj\Debug\AppointmentReminder.Tests.csprojResolveAssemblyReference.cache
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\obj\Debug\AppointmentReminder.Tests.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\obj\Debug\AppointmentReminder.Tests.pdb
-C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\EntityFramework.SqlServer.dll
-C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Telerik.JustMock.dll
-C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\EntityFramework.SqlServer.xml
-C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Telerik.JustMock.xml

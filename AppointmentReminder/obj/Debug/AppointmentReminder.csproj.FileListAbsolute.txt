@@ -240,6 +240,7 @@ C:\practice\AppointmentReminder1\AppointmentReminder\bin\DotNetOpenAuth.OpenId.R
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\Elmah.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\Elmah.Mvc.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\EntityFramework.dll
+C:\practice\AppointmentReminder1\AppointmentReminder\bin\EntityFramework.SqlServer.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\Kendo.Mvc.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\Microsoft.Data.Edm.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\Microsoft.Data.OData.dll
@@ -263,19 +264,22 @@ C:\practice\AppointmentReminder1\AppointmentReminder\bin\System.Web.WebPages.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\System.Web.WebPages.Razor.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\Twilio.Api.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\WebActivator.dll
+C:\practice\AppointmentReminder1\AppointmentReminder\bin\WebApiContrib.IoC.StructureMap.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\WebGrease.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\WebMatrix.Data.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\WebMatrix.WebData.dll
+C:\practice\AppointmentReminder1\AppointmentReminder\bin\EntityFramework.xml
+C:\practice\AppointmentReminder1\AppointmentReminder\bin\EntityFramework.SqlServer.xml
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\Kendo.Mvc.xml
+C:\practice\AppointmentReminder1\AppointmentReminder\bin\Newtonsoft.Json.xml
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\RestSharp.xml
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\StructureMap.pdb
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\StructureMap.xml
-C:\practice\AppointmentReminder1\AppointmentReminder\bin\EntityFramework.xml
-C:\practice\AppointmentReminder1\AppointmentReminder\bin\Newtonsoft.Json.xml
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\System.Net.Http.Formatting.xml
-C:\practice\AppointmentReminder1\AppointmentReminder\bin\System.Web.Helpers.xml
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\System.Web.Http.xml
+C:\practice\AppointmentReminder1\AppointmentReminder\bin\System.Web.Http.OData.xml
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\System.Web.Http.WebHost.xml
+C:\practice\AppointmentReminder1\AppointmentReminder\bin\System.Web.Helpers.xml
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\System.Web.Mvc.xml
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\System.Web.Razor.xml
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\System.Web.WebPages.xml
@@ -292,7 +296,6 @@ C:\practice\AppointmentReminder1\AppointmentReminder\bin\DotNetOpenAuth.OAuth.Co
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\DotNetOpenAuth.OAuth.xml
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\DotNetOpenAuth.OpenId.xml
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
-C:\practice\AppointmentReminder1\AppointmentReminder\bin\System.Web.Http.OData.xml
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\Microsoft.Data.Edm.xml
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\Microsoft.Data.OData.xml
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\System.Spatial.xml
@@ -342,5 +345,3 @@ C:\practice\AppointmentReminder1\AppointmentReminder\bin\zh-Hans\System.Spatial.
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\zh-Hant\System.Spatial.resources.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\obj\Debug\AppointmentReminder.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\obj\Debug\AppointmentReminder.pdb
-C:\practice\AppointmentReminder1\AppointmentReminder\bin\EntityFramework.SqlServer.dll
-C:\practice\AppointmentReminder1\AppointmentReminder\bin\EntityFramework.SqlServer.xml

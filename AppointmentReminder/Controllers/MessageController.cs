@@ -43,12 +43,6 @@ namespace AppointmentReminder.Controllers
 			try
 			{
 				var reminders = new ReminderDb().Reminders;
-			 
-				
-				//= Convert.ToInt32(ConfigurationManager.AppSettings["PSTProductionServerTimeDifference"]);
-
-
-				
 
 				foreach (var reminder in reminders)
 				{

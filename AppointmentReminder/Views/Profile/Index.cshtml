@@ -1,13 +1,23 @@
-﻿@model  AppointmentReminder.Models.IProfileModel
+﻿@*@model  AppointmentReminder.Models.IProfileModel*@
 
 @{
     ViewBag.Title = "My Profile";
 }
 
+
+@section Scripts {
+	<script src="~/js/profile-index.js"></script>
+}
+
 <h2>@ViewBag.Title</h2>
 
+		
 
-	@if (Model == null || ( Model.FirstName == null && Model.LastName == null))
+
+<div data-ng-controller ="profileIndexController">
+	
+
+@*	@if (Model == null || ( Model.FirstName == null && Model.LastName == null))
 	{
 	 <p>
 		@Html.ActionLink("Create New", "Create")
@@ -16,39 +26,41 @@
 	else
 	{
 
-
-<table>
+	
+*@
+	
+	<table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            FirstName
         </th>
 	    <th>
-		    @Html.DisplayNameFor(model => model.LastName)
+		    LastName
 	    </th>
 		        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+            Phone Number
         </th>
 		        <th>
-            @Html.DisplayNameFor(model => model.EmailAddress)
+          Email Address
         </th>
         <th></th>
     </tr>
 
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => Model.FirstName)
-        </td>
 	    <td>
-		    @Html.DisplayFor(modelItem => Model.LastName)
+		    {{profile.FirstName}}
+	    </td>
+	    <td>
+		   {{profile.LastName}}
 	    </td>
         <td>
-            @Html.DisplayFor(modelItem => Model.PhoneNumber)
+            {{profile.PhoneNumber}}
         </td>
         <td>
-            @Html.DisplayFor(modelItem => Model.EmailAddress)
+             {{profile.EmailAddress}}
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) 
+			<a data-ng-href="@Url.Action("Edit", "Edit")/{{profile.Id}}" target="_self">Edit  </a>
         </td>
     </tr>
 
@@ -56,4 +68,7 @@
 </table>
 	 		
 	 
-	}
+@*	}*@
+		</div>
+
+	</div>

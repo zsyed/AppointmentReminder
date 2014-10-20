@@ -6,6 +6,16 @@ using System.Web.Mvc;
 
 namespace AppointmentReminder.Controllers
 {
+	using System.Configuration;
+	using System.Net;
+	using System.Net.Http;
+	using System.Net.Http.Headers;
+	using System.Security.Claims;
+	using System.Security.Principal;
+	using System.Text;
+	using System.Threading;
+	using System.Threading.Tasks;
+
 	using AppointmentReminder.Data;
 	using AppointmentReminder.Models;
 
@@ -26,17 +36,19 @@ namespace AppointmentReminder.Controllers
 
         public ViewResult Index()
         {
-			string userName = User.Identity.Name;
-			var profile = _db.GetProfile(userName); 
-			if (profile != null)
-	        {
-				_profileModel.Id = profile.Id;
-				_profileModel.FirstName = profile.FirstName;
-				_profileModel.LastName = profile.LastName;
-				_profileModel.PhoneNumber = profile.PhoneNumber;
-				_profileModel.EmailAddress = profile.EmailAddress;
-			}
-			return this.View(_profileModel);
+			Thread.Sleep(3000);
+			//return View();
+			//var profile1 = _db.GetProfile("");
+			//if (profile != null)
+			//{
+			//	_profileModel.Id = profile.Id;
+			//	_profileModel.FirstName = profile.FirstName;
+			//	_profileModel.LastName = profile.LastName;
+			//	_profileModel.PhoneNumber = profile.PhoneNumber;
+			//	_profileModel.EmailAddress = profile.EmailAddress;
+			//}
+			//// return this.View(_profileModel);
+			return this.View();
         }
 
         //
@@ -113,4 +125,40 @@ namespace AppointmentReminder.Controllers
 
         }
     }
+
+
+	public class BasicAuthHandler : DelegatingHandler
+	{
+		private const string BasicAuthResponseHeaderValue = "Basic";
+		private const string Realm = "Apress";
+
+		protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+		{
+			bool identified = false;
+			if (request.Headers.Authorization != null && string.Equals(request.Headers.Authorization.Scheme, BasicAuthResponseHeaderValue, StringComparison.CurrentCultureIgnoreCase))
+			{
+				var credentials = Encoding.UTF8.GetString(Convert.FromBase64String(request.Headers.Authorization.Parameter));
+				var user = credentials.Split(':')[0].Trim();
+				var pwd = credentials.Split(':')[1].Trim();
+
+				//validate username and password here and set identified flag
+				//omitted for brevity
+
+				if (identified)
+				{
+					var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, user) }, BasicAuthResponseHeaderValue);
+					request.GetRequestContext().Principal = new ClaimsPrincipal(new[] { identity });
+				}
+			}
+
+			if (!identified)
+			{
+				var unauthorizedResponse = request.CreateResponse(HttpStatusCode.Unauthorized);
+				unauthorizedResponse.Headers.WwwAuthenticate.Add(new AuthenticationHeaderValue(BasicAuthResponseHeaderValue, Realm));
+				return Task.FromResult(unauthorizedResponse);
+			}
+
+			return base.SendAsync(request, cancellationToken);
+		}
+	}
 }
