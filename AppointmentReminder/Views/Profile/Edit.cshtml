@@ -1,59 +1,35 @@
-﻿@model AppointmentReminder.Models.IProfileModel
-
-@{
-    ViewBag.Title = "My Profile - Edit";
+﻿@{
+	ViewBag.InitModule = "ProfileModule";
 }
-
-<h2>@ViewBag.Title</h2>
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>Profile</legend>
-
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.FirstName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.FirstName)
-            @Html.ValidationMessageFor(model => model.FirstName)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LastName)
-        </div>
-	    <div class="editor-field">
-		    @Html.EditorFor(model => model.LastName)
-		    @Html.ValidationMessageFor(model => model.LastName)
-	    </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PhoneNumber)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PhoneNumber)
-            @Html.ValidationMessageFor(model => model.PhoneNumber)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.EmailAddress)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.EmailAddress)
-            @Html.ValidationMessageFor(model => model.EmailAddress)
-        </div>
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+	<script src="~/js/profile-index.js"></script>
 }
+
+<h2>My Profile - Edit</h2>
+
+<div data-ng-controller="ProfileEditController">
+	<form name ="editProfile" data-ng-submit="saveEditProfile()">
+		<div>
+			<label>First Name: </label>
+			<input type="text" placeholder="Enter First Name" data-ng-model="profile.FirstName"/>
+		</div>
+		<div>
+			<label>Last Name: </label>
+			<input type="text" placeholder="Enter Last Name" data-ng-model="profile.LastName"/>
+		</div>
+		<div>
+			<label>Email Address: </label>
+			<input type="text" placeholder="Enter Email Address" data-ng-model="profile.EmailAddress"/>
+		</div>
+		<div>
+			<label>Phone Number: </label>
+			<input type="text" placeholder="Enter Phone Number" data-ng-model="profile.PhoneNumber"/>
+		</div>
+		<div></div>
+		<div>
+			<input type="submit" value="Update" />
+		</div>
+	</form>
+</div>
+

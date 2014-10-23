@@ -82,37 +82,7 @@ namespace AppointmentReminder.Controllers
 
         public ViewResult Edit()
         {
-			var profile = _db.GetProfile(User.Identity.Name);
-			if (profile != null)
-			{
-				_profileModel.Id = profile.Id;
-				_profileModel.FirstName = profile.FirstName;
-				_profileModel.LastName = profile.LastName;
-				_profileModel.PhoneNumber = profile.PhoneNumber;
-				_profileModel.EmailAddress = profile.EmailAddress;
-			}
-			return this.View(_profileModel);
-        }
-
-        //
-        // POST: /Profile/Edit/5
-
-        [HttpPost]
-        public ViewResult Edit(IProfileModel profileModel)
-        {
-			if (ModelState.IsValid)
-			{
-				var model = _db.Profiles.Where(p => p.Id == profileModel.Id).FirstOrDefault();
-				model.FirstName = profileModel.FirstName;
-				model.LastName = profileModel.LastName;
-				model.PhoneNumber = profileModel.PhoneNumber;
-				model.EmailAddress = profileModel.EmailAddress;
-				_db.Save();
-
-                return View("Index", profileModel);
-            }
-			return this.View(profileModel);
-
+			return this.View();
         }
     }
 
