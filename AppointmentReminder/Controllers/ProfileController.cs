@@ -19,6 +19,8 @@ namespace AppointmentReminder.Controllers
 	using AppointmentReminder.Data;
 	using AppointmentReminder.Models;
 
+	using Newtonsoft.Json;
+
 	[Authorize]
 	public class ProfileController : Controller
     {
@@ -36,7 +38,6 @@ namespace AppointmentReminder.Controllers
 
         public ViewResult Index()
         {
-			Thread.Sleep(3000);
 			return this.View();
         }
 
@@ -79,12 +80,12 @@ namespace AppointmentReminder.Controllers
         //
         // GET: /Profile/Edit/5
 
-        public ViewResult Edit(int id)
+        public ViewResult Edit()
         {
-			var profile = _db.GetProfile(id);
+			var profile = _db.GetProfile(User.Identity.Name);
 			if (profile != null)
 			{
-				_profileModel.Id = id;
+				_profileModel.Id = profile.Id;
 				_profileModel.FirstName = profile.FirstName;
 				_profileModel.LastName = profile.LastName;
 				_profileModel.PhoneNumber = profile.PhoneNumber;

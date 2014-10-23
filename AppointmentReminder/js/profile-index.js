@@ -1,21 +1,22 @@
-﻿var profileIndexController = function ($scope, $http) {
+﻿
+var ProfileIndexController = function($scope, $http) {
+	$http.get("/api/ProfileWeb")
+		.then(function(response) {
+			$scope.profile = response.data;
+		})
+};
 
-	//$scope.isBusy = true;
 
-	//$http.get("/api/ProfileWeb")
-	//	.then(
-	//		function (result) {
-	//			angular.copy(result.data, $scope.profile);
-	//		}
-	//	)
-	//	.then(function () {
-	//		$scope.isBusy = false;
-	//	});
+var ProfileEditController = function ($scope, $http) {
+	$http.put("/api/ProfileWeb")
+		.then(function (response) {
+			$scope.profile = response.data;
+		})
+};
 
-	//;
-
-	var resultPromise = $http.get("/api/ProfileWeb");
-	resultPromise.success(function (data) {
-		$scope.profile = data;
-	});
-}
+var ProfileCreateController = function ($scope, $http) {
+	$http.post("/api/ProfileWeb")
+		.then(function (response) {
+			$scope.profile = response.data;
+		})
+};

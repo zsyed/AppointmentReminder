@@ -1,88 +1,26 @@
-﻿@*@model  AppointmentReminder.Models.IProfileModel*@
-
-@{
-    ViewBag.Title = "My Profile";
-}
-
-
-@section Scripts {
+﻿@section Scripts {
 	<script src="~/js/profile-index.js"></script>
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>My Profile</h2>
 
-		
+</br></br></br>
 
+<div data-ng-show="profile.FirstName === ''">
+	<a data-ng-href="@Url.Action("Create", "Profile")" target="_self">Create New  </a>
+</div>
 
-<div data-ng-controller ="profileIndexController">
-	
+</br>
 
-	@*	@if (Model == null || ( Model.FirstName == null && Model.LastName == null))
-	{
-	 <p>
-		@Html.ActionLink("Create New", "Create")
-		 </p>
-	}
-	else
-	{
-
-	
-*@
-	
-	<div ng-if="profile.FirstName == null">
-		
-			 <p>
-		@Html.ActionLink("Create New", "Create")
-		 </p>
+<div data-ng-if="profile.FirstName !== ''">
+	<div data-ng-controller="ProfileIndexController">
+		<div>First Name: {{profile.FirstName}} </div>
+		<div>Last Name: {{profile.LastName}} </div>
+		<div>Phone Number: {{profile.PhoneNumber}} </div>
+		<div>Email Address: {{profile.EmailAddress}} </div>
+		</br>
+		<div>
+            <a data-ng-href="@Url.Action("Edit", "Profile")">Edit  </a>
+        </div>
 	</div>
-	
-
-	<div ng-if="profile.FirstName != null">
-		
-
-
-
-		<table>
-			<tr>
-				<th>
-					FirstName
-				</th>
-				<th>
-					LastName
-				</th>
-				<th>
-					Phone Number
-				</th>
-				<th>
-					Email Address
-				</th>
-				<th></th>
-			</tr>
-
-			<tr>
-				<td>
-					{{profile.FirstName}}
-				</td>
-				<td>
-					{{profile.LastName}}
-				</td>
-				<td>
-					{{profile.PhoneNumber}}
-				</td>
-				<td>
-					{{profile.EmailAddress}}
-				</td>
-				<td>
-					<a data-ng-href="@Url.Action("Edit", "Edit")/{{profile.Id}}" target="_self">Edit  </a>
-				</td>
-			</tr>
-
-
-		</table>
-			</div>
-	 		
-	 
-@*	}*@
-		</div>
-
-	</div>
+</div>

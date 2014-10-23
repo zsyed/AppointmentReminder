@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" data-ng-app="" >
+<html lang="en" data-ng-app="@ViewBag.InitModule" >
     <head>
         <meta charset="utf-8" />
         <title>@ViewBag.Title - My ASP.NET MVC Application</title>
@@ -21,7 +21,10 @@
 	<script src="@Url.Content("~/Scripts/kendo/2014.2.903/kendo.aspnetmvc.min.js")"></script>
 	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
 
-		  <script src="http://code.angularjs.org/1.2.14/angular.js"></script>
+	    <script src="http://code.angularjs.org/1.2.14/angular.js"></script>
+	    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+	    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+		<script src="~/Scripts/bootstrap.js"></script>
 </head>
     <body>
         <header>

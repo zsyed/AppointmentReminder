@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace AppointmentReminder.Data
+﻿namespace AppointmentReminder.Data
 {
 	using System.Data.Entity;
 
@@ -17,12 +12,9 @@ namespace AppointmentReminder.Data
 
 		DbSet<ReminderHistory> ReminderHistories { get; set; }
 
-		// Profile GetProfile {get; }
-
 		Profile GetProfile(string userName);
 
 		Profile GetProfile(int id);
-
 
 		void Save();
 	}
