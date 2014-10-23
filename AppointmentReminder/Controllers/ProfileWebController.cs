@@ -49,6 +49,7 @@ namespace AppointmentReminder.Controllers
 		{
 			try
 			{
+				newProfile.UserName = User.Identity.Name;
 				_db.Profiles.Add(newProfile);
 				_db.Save();
 				return Request.CreateResponse(HttpStatusCode.Created, newProfile);

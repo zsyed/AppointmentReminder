@@ -7,6 +7,8 @@
 			.then(function(response) {
 				$scope.profile = response.data;
 			});
+
+		var s = $scope.profile;
 	};
 
 
@@ -25,14 +27,18 @@
 		};
 	};
 
-	var ProfileCreateController = function($scope, $http) {
-		$http.post("/api/ProfileWeb")
-			.then(function(response) {
-				$scope.profile = response.data;
-			})
+	var ProfileCreateController = function ($scope, $http) {
+		$scope.saveCreateProfile = function () {
+			$http.post("/api/ProfileWeb", $scope.profile)
+				.then(function(response) {
+					$scope.profile = response.data;
+				});
+		};
+
 	};
 
 	app.controller("ProfileIndexController", ["$scope", "$http", ProfileIndexController]);
 	app.controller("ProfileEditController", ["$scope", "$http", ProfileEditController]);
+	app.controller("ProfileCreateController", ["$scope", "$http", ProfileCreateController]);
 
 }());
