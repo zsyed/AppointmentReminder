@@ -10,13 +10,13 @@
 
 </br></br></br>
 <div data-ng-controller="ProfileIndexController">
-	<div data-ng-show="!profile">
+	<div data-ng-show="profile.FirstName == null">
 		<a data-ng-href="@Url.Action("Create", "Profile")" target="_self">Create New  </a>
 	</div>
 
 	</br>
 
-	<div data-ng-show="profile">
+	<div data-ng-show="profile.FirstName != null">
 		<div>First Name: {{profile.FirstName}} </div>
 		<div>Last Name: {{profile.LastName}} </div>
 		<div>Phone Number: {{profile.PhoneNumber}} </div>
