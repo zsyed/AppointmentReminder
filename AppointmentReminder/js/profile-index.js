@@ -9,9 +9,6 @@
 			.then(function(response) {
 				$scope.profile = response.data;
 			});
-		$scope.setLocation = function (url) {
-			$location.path(url);
-		};
 	};
 
 
