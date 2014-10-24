@@ -13,8 +13,6 @@ namespace AppointmentReminder.Controllers
     {
 	    private IReminderDb _db;
 
-		private IIdentityService _identityService;
-
 		public ProfileWebController(IReminderDb db)
 		{
 			_db = db;

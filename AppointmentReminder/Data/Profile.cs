@@ -18,5 +18,12 @@ namespace AppointmentReminder.Data
 		public virtual string PhoneNumber { get; set; }
 
 		public virtual string EmailAddress { get; set; }
+
+		// Twilio's phone number
+		public virtual string PhoneNumberIssued { get; set; }
+
+		public virtual string AccountSid { get; set; }
+
+		public virtual string AuthToken { get; set; }
 	}
 }

@@ -67,10 +67,10 @@ namespace AppointmentReminder.Controllers
 #endif
 
 					timeDifference = reminder.ReminderDateTime - currentDateTime;
-					int RemdinerHours = Convert.ToInt32(ConfigurationManager.AppSettings["ReminderHours"]);
+					int RemdinerMinutes = Convert.ToInt32(ConfigurationManager.AppSettings["RemdinerMinutes"]);
 
 
-					if (timeDifference.Seconds > 0 && timeDifference.Hours <= RemdinerHours && reminder.ReminderDateTime.Date.Equals(currentDateTime.Date) && !reminder.Sent)
+					if (timeDifference.Seconds > 0 && timeDifference.Minutes <= RemdinerMinutes && reminder.ReminderDateTime.Date.Equals(currentDateTime.Date) && !reminder.Sent)
 					{
 
 						var profile = _db.Profiles.Where(p => p.Id == contact.ProfileId).FirstOrDefault();
@@ -165,12 +165,12 @@ namespace AppointmentReminder.Controllers
 
 		public void SendSMS(Reminder reminder, Profile profile, Contact contact)
 		{
-			string fromPhoneNumber = ConfigurationManager.AppSettings["TwilioNumber"];
+			string fromPhoneNumber = profile.PhoneNumberIssued; 
 			string toPhoneNumber = string.Format("1{0}", contact.PhoneNumber);
 			string message = string.Format("Hi {0}, This is a reminder for you to {1} at {2}. Sincerely, {3}", contact.FirstName.Trim(), reminder.Message, reminder.ReminderDateTime.ToString(), profile.FirstName);
 
-			string AccountSid = ConfigurationManager.AppSettings["AccountSid"]; 
-			string AuthToken = ConfigurationManager.AppSettings["AuthToken"]; 
+			string AccountSid = profile.AccountSid;
+			string AuthToken = profile.AuthToken;
 
 			var twilio = new TwilioRestClient(AccountSid, AuthToken);
 

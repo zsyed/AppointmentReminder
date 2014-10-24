@@ -16,8 +16,7 @@ namespace AppointmentReminder {
                                         scan.WithDefaultConventions();
                                     });
                             x.For<IReminderDb>().HttpContextScoped().Use<ReminderDb>();
-							x.For<IProfileModel>().HttpContextScoped().Use<ProfileModel>();
-							x.For<IIdentityService>().HttpContextScoped().Use<IdentityService>();
+
                         });
 			GlobalConfiguration.Configuration.DependencyResolver = new StructureMapResolver(ObjectFactory.Container);
             return ObjectFactory.Container;

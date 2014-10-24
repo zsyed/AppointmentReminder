@@ -241,8 +241,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ContactModel.cs" />
-    <Compile Include="Models\IProfileModel.cs" />
-    <Compile Include="Models\ProfileModel.cs" />
     <Compile Include="Models\ReminderHistoryModel.cs" />
     <Compile Include="Models\ReminderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
