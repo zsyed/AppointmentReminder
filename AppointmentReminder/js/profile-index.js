@@ -24,7 +24,7 @@
 				.then(function(response) {
 					$scope.profile = response.data;
 				});
-
+			window.location = "/Profile/Index";
 		};
 	};
 
@@ -34,6 +34,7 @@
 				.then(function(response) {
 					$scope.profile = response.data;
 				});
+			window.location = "/Profile/Index";
 		};
 
 	};
