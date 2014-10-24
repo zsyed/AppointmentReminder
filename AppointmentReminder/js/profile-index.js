@@ -22,6 +22,7 @@
 				.then(function(response) {
 					$scope.profile = response.data;
 				});
+
 		};
 	};
 
