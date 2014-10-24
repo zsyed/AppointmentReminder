@@ -2,11 +2,16 @@
 
 	var app = angular.module("ProfileModule", []);
 
+
+
 	var ProfileIndexController = function($scope, $http) {
 		$http.get("/api/ProfileWeb")
 			.then(function(response) {
 				$scope.profile = response.data;
 			});
+		$scope.setLocation = function (url) {
+			$location.path(url);
+		};
 	};
 
 
