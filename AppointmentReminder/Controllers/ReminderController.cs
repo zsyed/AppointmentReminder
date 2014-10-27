@@ -25,7 +25,7 @@ namespace AppointmentReminder.Controllers
 
         public ActionResult Index()
         {
-	        var profile = _db.Profiles.Where(p => p.UserName == User.Identity.Name).FirstOrDefault();
+	        var profile = _db.Profiles.ToList().Find(p => p.UserName == User.Identity.Name);
 	        var reminders = new ReminderDb().Reminders.Where(r => r.ProfileId == profile.Id).OrderBy(r => r.ReminderDateTime);
 			
 	        var remindersModel = new List<ReminderModel>();

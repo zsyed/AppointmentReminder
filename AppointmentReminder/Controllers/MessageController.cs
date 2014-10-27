@@ -73,8 +73,8 @@ namespace AppointmentReminder.Controllers
 					if (timeDifference.Seconds > 0 && timeDifference.Minutes <= RemdinerMinutes && reminder.ReminderDateTime.Date.Equals(currentDateTime.Date) && !reminder.Sent)
 					{
 
-						var profile = _db.Profiles.Where(p => p.Id == contact.ProfileId).FirstOrDefault();
-						if (contact.Active)
+						var profile = _db.Profiles.ToList().Find(p => p.Id == contact.ProfileId);
+						if (contact.Active && !profile.DeActivate)
 						{
 							bool reminderSent = false;
 							if (contact.SendEmail)
@@ -129,7 +129,7 @@ namespace AppointmentReminder.Controllers
 
 							if (reminderSent)
 							{
-								_db.Reminders.Where(r => r.Id == reminder.Id).FirstOrDefault().Sent = true;
+								_db.Reminders.ToList().Find(r => r.Id == reminder.Id).Sent = true;
 								_db.Save();
 							}
 
