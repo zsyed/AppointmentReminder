@@ -1,4 +1,45 @@
-﻿@model AppointmentReminder.Models.ContactModel
+﻿@{
+	ViewBag.InitModule = "ContactModule";
+}
+
+@section Scripts {
+	<script src="~/js/contact.js"></script>
+}
+
+<h2>Contact - Create</h2>
+
+<div data-ng-controller="ContactCreateController">
+	<form name ="createContact" data-ng-submit="saveCreateContact()">
+
+		<div>
+			<label>First Name: </label>
+			<input required type="text" placeholder="Enter First Name" data-ng-model="contact.FirstName"/>
+		</div>
+		<div>
+			<label>Last Name: </label>
+			<input required type="text" placeholder="Enter Last Name" data-ng-model="contact.LastName"/>
+		</div>
+		<div>
+			<label>Email Address: </label>
+			<input required type="text" placeholder="Enter Email Address" data-ng-model="contact.EmailAddress"/>
+		</div>
+		<div>
+			<label>Cell Phone Number: </label>
+			<input required type="text" placeholder="Enter Phone Number" data-ng-model="contact.PhoneNumber"/>
+		</div>
+
+		<div></div>
+		<div>
+			<button class="btn btn-primary" type="submit">Create</button>
+		</div>
+	</form>
+</div>
+
+
+
+
+
+@*@model AppointmentReminder.Models.ContactModel
 
 @{
     ViewBag.Title = "Contact - Create";
@@ -103,4 +144,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@

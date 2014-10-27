@@ -56,7 +56,6 @@ namespace AppointmentReminder.Controllers
 			{
 				return Request.CreateResponse(HttpStatusCode.BadRequest);
 			}
-
 		}
     }
 }

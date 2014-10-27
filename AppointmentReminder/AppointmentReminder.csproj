@@ -216,6 +216,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\ContactWebController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\IdentityService.cs" />
     <Compile Include="Data\IIdentityService.cs" />
@@ -530,6 +531,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Properties\PublishProfiles\AppointmentReminder - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\AppointmentReminder - Web Deploy.pubxml" />
+    <Content Include="js\contact.js" />
     <Content Include="js\profile-index.js" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />

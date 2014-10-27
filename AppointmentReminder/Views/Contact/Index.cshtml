@@ -1,76 +1,31 @@
-﻿@model IEnumerable<AppointmentReminder.Models.ContactModel>
-
-@{
-    ViewBag.Title = "My Contacts";
+﻿@{
+	ViewBag.InitModule = "ContactModule";
 }
 
-<h2>@ViewBag.Title</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TimeZone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </th>
-       <th>
-            @Html.DisplayNameFor(model => model.EmailAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Active)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SendEmail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SendSMS)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TimeZone)
-        </td>
-        <td>
-	        @Html.DisplayFor(modelItem => item.PhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmailAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Active)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SendEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SendSMS)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+@section Scripts {
+	<script src="~/js/contact.js"></script>
 }
 
-</table>
+<h2>My Contacts</h2>
+
+</br>
+
+<div data-ng-controller="ContactIndexController">
+
+	<a href="/Contact/Create" class="btn btn-primary">Create New</a>
+
+	</br>
+
+	<div data-ng-repeat="contact in contacts" >
+		<div>First Name: {{contact.FirstName}} </div>
+		<div>Last Name: {{contact.LastName}} </div>
+		<div>Cell Phone Number: {{contact.PhoneNumber}} </div>
+		<div>Email Address: {{contact.EmailAddress}} </div>
+		</br>
+		<div>
+			<a href="/Contact/Edit/{{contact.Id}}" class="btn btn-primary">Edit</a>
+			<a href="/Contact/Delete/{{contact.Id}}" class="btn btn-primary">Delete</a>
+		</div>
+	</div>
+</div>
+
