@@ -23,9 +23,19 @@
 			<input required type="text" placeholder="Enter Email Address" data-ng-model="profile.EmailAddress"/>
 		</div>
 		<div>
-			<label>Phone Number: </label>
+			<label>Cell Phone Number: </label>
 			<input required type="text" placeholder="Enter Phone Number" data-ng-model="profile.PhoneNumber"/>
 		</div>
+		<br /><br />
+		<div>
+			<label>DeActivate: </label>
+			<input type="checkbox" data-ng-model="profile.DeActivate"/>
+			
+		</div>
+		<div>
+			This setting will deactivate your profile and all the related reminders. Check this box carefully.
+		</div>
+		<br /><br />
 		<div></div>
 		<div>
 			<button class="btn btn-primary" type="submit">Update</button>

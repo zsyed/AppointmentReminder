@@ -29,11 +29,12 @@ namespace AppointmentReminder.Controllers
 		{
 			try
 			{
-				var existProfile = _db.Profiles.ToList().Find(p => p.Id == profile.Id);
-				existProfile.FirstName = profile.FirstName;
-				existProfile.LastName = profile.LastName;
-				existProfile.EmailAddress = profile.EmailAddress;
-				existProfile.PhoneNumber = profile.PhoneNumber;
+				var dbProfile = _db.Profiles.ToList().Find(p => p.Id == profile.Id);
+				dbProfile.FirstName = profile.FirstName;
+				dbProfile.LastName = profile.LastName;
+				dbProfile.EmailAddress = profile.EmailAddress;
+				dbProfile.PhoneNumber = profile.PhoneNumber;
+				dbProfile.DeActivate = profile.DeActivate;
 				_db.Save();
 				return Request.CreateResponse(HttpStatusCode.Created, profile);
 			}
@@ -48,6 +49,7 @@ namespace AppointmentReminder.Controllers
 			try
 			{
 				newProfile.UserName = User.Identity.Name;
+				newProfile.DeActivate = false;
 				_db.Profiles.Add(newProfile);
 				_db.Save();
 				return Request.CreateResponse(HttpStatusCode.Created, newProfile);

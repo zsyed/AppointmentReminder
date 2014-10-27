@@ -2,6 +2,8 @@
 
 	var app = angular.module("ProfileModule", []);
 
+
+
 	var ProfileIndexController = function($scope, $http) {
 		$http.get("/api/ProfileWeb")
 			.then(function(response) {
@@ -22,6 +24,7 @@
 				.then(function(response) {
 					$scope.profile = response.data;
 				});
+			window.location = "/Profile/Index";
 		};
 	};
 
@@ -31,6 +34,7 @@
 				.then(function(response) {
 					$scope.profile = response.data;
 				});
+			window.location = "/Profile/Index";
 		};
 
 	};

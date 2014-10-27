@@ -25,5 +25,7 @@ namespace AppointmentReminder.Data
 		public virtual string AccountSid { get; set; }
 
 		public virtual string AuthToken { get; set; }
+
+		public virtual bool DeActivate { get; set; }
 	}
 }
