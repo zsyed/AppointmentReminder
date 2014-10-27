@@ -26,6 +26,24 @@
 			<label>Cell Phone Number: </label>
 			<input required type="text" placeholder="Enter Phone Number" data-ng-model="contact.PhoneNumber"/>
 		</div>
+		<div>
+			<label>Time Zone: </label>
+			<input required type="text" placeholder="Enter Phone Number" data-ng-model="contact.TimeZone"/>
+		</div>
+		<div>
+			<label>Send Email: </label>
+			<input type="checkbox" data-ng-model="contact.SendEmail"/>
+		</div>
+		<div>
+			<label>Send SMS: </label>
+			<input type="checkbox" data-ng-model="contact.SendSMS"/>
+		</div>
+		<div>
+			<label>Active: </label>
+			<input type="checkbox" data-ng-model="contact.Active"/>
+		</div>
+
+
 		<div></div>
 		<div>
 			<button class="btn btn-primary" type="submit">Update</button>

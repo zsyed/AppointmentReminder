@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Appointmentcontact.Controllers
 {
-	using System.Text.RegularExpressions;
-
 	using AppointmentReminder.Data;
-	using AppointmentReminder.Models;
 
 	[Authorize]
 	public class ContactController : Controller
@@ -34,38 +28,39 @@ namespace Appointmentcontact.Controllers
 
         public ActionResult Create()
         {
-			var contactModel = new ContactModel();
-	        contactModel.ProfileId = _db.Profiles.Where(p => p.UserName == User.Identity.Name).FirstOrDefault().Id;
-			return View(contactModel);
+	        return this.View();
+	        //var contactModel = new ContactModel();
+	        //contactModel.ProfileId = _db.Profiles.Where(p => p.UserName == User.Identity.Name).FirstOrDefault().Id;
+	        //return View(contactModel);
         }
 
         //
         // POST: /contact/Create
 
-        [HttpPost]
-		public ActionResult Create(ContactModel contactModel)
-        {
-			if (ModelState.IsValid)
-			{
-				_db.Contacts.Add(new Contact() 
-					{ 
-						FirstName = contactModel.FirstName, 
-						LastName = contactModel.LastName, 
-						Active = contactModel.Active, 
-						TimeZone = contactModel.TimeZone,
-						PhoneNumber = contactModel.PhoneNumber,
-						EmailAddress = contactModel.EmailAddress,
-						ProfileId = contactModel.ProfileId,
-						SendEmail = contactModel.SendEmail,
-						SendSMS = contactModel.SendSMS
-					}
-				);
-				_db.Save();
-				return RedirectToAction("Index");
-			}
+		//[HttpPost]
+		//public ActionResult Create(ContactModel contactModel)
+		//{
+		//	if (ModelState.IsValid)
+		//	{
+		//		_db.Contacts.Add(new Contact() 
+		//			{ 
+		//				FirstName = contactModel.FirstName, 
+		//				LastName = contactModel.LastName, 
+		//				Active = contactModel.Active, 
+		//				TimeZone = contactModel.TimeZone,
+		//				PhoneNumber = contactModel.PhoneNumber,
+		//				EmailAddress = contactModel.EmailAddress,
+		//				ProfileId = contactModel.ProfileId,
+		//				SendEmail = contactModel.SendEmail,
+		//				SendSMS = contactModel.SendSMS
+		//			}
+		//		);
+		//		_db.Save();
+		//		return RedirectToAction("Index");
+		//	}
 
-			return this.View(contactModel);
-        }
+		//	return this.View(contactModel);
+		//}
 
 		public ActionResult Edit()
 		{

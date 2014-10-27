@@ -40,6 +40,10 @@ namespace AppointmentReminder.Controllers
 				dbContact.LastName = contact.LastName;
 				dbContact.EmailAddress = contact.EmailAddress;
 				dbContact.PhoneNumber = contact.PhoneNumber;
+				dbContact.Active = contact.Active;
+				dbContact.SendEmail = contact.SendEmail;
+				dbContact.SendSMS = contact.SendSMS;
+				dbContact.TimeZone = contact.TimeZone;
 				_db.Save();
 				return Request.CreateResponse(HttpStatusCode.Created, contact);
 			}
@@ -78,6 +82,7 @@ namespace AppointmentReminder.Controllers
 			{
 				var profile = _db.Profiles.ToList().Find(p => p.UserName == User.Identity.Name);
 				contact.ProfileId = profile.Id;
+				contact.Active = true;
 				_db.Contacts.Add(contact);
 				_db.Save();
 				return Request.CreateResponse(HttpStatusCode.Created, contact);
