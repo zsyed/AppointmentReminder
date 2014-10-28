@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using AppointmentReminder.Data;
 using Twilio;
@@ -91,11 +90,11 @@ namespace AppointmentReminder.Controllers
 
 								var reminderHistory = new ReminderHistory();
 								reminderHistory.ContactId = contact.Id;
-								reminderHistory.EmailSent = true;
 								reminderHistory.Message = reminder.Message;
 								reminderHistory.ProfileId = profile.Id;
 								reminderHistory.ReminderDateTime = reminder.ReminderDateTime;
 								reminderHistory.ReminderId = reminder.Id;
+								reminderHistory.EmailSent = true;
 								reminderHistory.SMSSent = false;
 								reminderHistory.MessageSentDateTime = currentDateTime;
 								_db.ReminderHistories.Add(reminderHistory);
@@ -116,11 +115,11 @@ namespace AppointmentReminder.Controllers
 
 								var reminderHistory = new ReminderHistory();
 								reminderHistory.ContactId = contact.Id;
-								reminderHistory.EmailSent = false;
 								reminderHistory.Message = reminder.Message;
 								reminderHistory.ProfileId = profile.Id;
 								reminderHistory.ReminderDateTime = reminder.ReminderDateTime;
 								reminderHistory.ReminderId = reminder.Id;
+								reminderHistory.EmailSent = false;
 								reminderHistory.SMSSent = true;
 								reminderHistory.MessageSentDateTime = currentDateTime;
 								_db.ReminderHistories.Add(reminderHistory);
