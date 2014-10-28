@@ -25,46 +25,11 @@ namespace AppointmentReminder.Controllers
 
         public ActionResult Index()
         {
-	        var profile = _db.Profiles.ToList().Find(p => p.UserName == User.Identity.Name);
-	        var reminders = new ReminderDb().Reminders.Where(r => r.ProfileId == profile.Id).OrderBy(r => r.ReminderDateTime);
-			
-	        var remindersModel = new List<ReminderModel>();
-			foreach (var reminder in reminders)
-			{
-				var contact = new ReminderDb().Contacts.Where(c => c.Id == reminder.ContactId).FirstOrDefault();
-				remindersModel.Add(new ReminderModel()
-					{
-						Id = reminder.Id, 
-						Message = reminder.Message, 
-						ProfileId = reminder.ProfileId, 
-						ReminderDateTime = reminder.ReminderDateTime, 
-						ContactName = string.Format("{0} {1}",contact.FirstName, contact.LastName),
-						Sent = reminder.Sent
-					}
-				);
-			}
-			return View(remindersModel);
+	        return this.View();
         }
 
 		public ActionResult History()
 		{
-			//var profile = _db.Profiles.Where(p => p.UserName == User.Identity.Name).FirstOrDefault();
-			//var remindersHistory = new ReminderDb().ReminderHistories.Where(rh => rh.ProfileId == profile.Id).OrderByDescending(rh => rh.MessageSentDateTime);
-			//var reminderHistoryModels = new List<ReminderHistoryModel>();
-			//foreach (var reminderHistory in remindersHistory)
-			//{
-			//	var contact = new ReminderDb().Contacts.Where(c => c.Id == reminderHistory.ContactId).FirstOrDefault();
-			//	reminderHistoryModels.Add(new ReminderHistoryModel()
-			//	{
-			//		Message = reminderHistory.Message,
-			//		ReminderDateTime = reminderHistory.ReminderDateTime,
-			//		ContactName = string.Format("{0} {1}", contact.FirstName, contact.LastName),
-			//		SMSSent = reminderHistory.SMSSent,
-			//		EmailSent = reminderHistory.EmailSent,
-			//		MessageSentDateTime = reminderHistory.MessageSentDateTime
-			//	});
-			//}
-			//return this.View(reminderHistoryModels);
 			return this.View();
 		}
 
@@ -106,55 +71,50 @@ namespace AppointmentReminder.Controllers
 
 		public ActionResult Edit(int id)
 		{
-			var reminder = _db.Reminders.Where(r => r.Id == id).FirstOrDefault();
-			var reminderModel = new ReminderModel()
-				                    {
-					                    Id = reminder.Id,
-					                    Message = reminder.Message,
-					                    ProfileId = reminder.ProfileId,
-					                    ReminderDateTime = reminder.ReminderDateTime,
-										ContactId = reminder.ContactId,
-										Sent = reminder.Sent
-				                    };
-			return View(reminderModel);
+			return this.View();
+		}
+
+		public ActionResult Delete(int id)
+		{
+			return this.View();
 		}
 
         //
         // POST: /Reminder/Edit/5
 
-        [HttpPost]
-        public ActionResult Edit(ReminderModel reminderModel)
-        {
-			if (ModelState.IsValid)
-			{
+		//[HttpPost]
+		//public ActionResult Edit(ReminderModel reminderModel)
+		//{
+		//	if (ModelState.IsValid)
+		//	{
 
-				var reminder = _db.Reminders.Where(r => r.Id == reminderModel.Id).FirstOrDefault();
-				reminder.Message = reminderModel.Message;
-				reminder.ReminderDateTime = reminderModel.ReminderDateTime;
-				reminder.ContactId = reminderModel.ContactId;
-				reminder.Sent = reminderModel.Sent;
-				_db.Save();
+		//		var reminder = _db.Reminders.Where(r => r.Id == reminderModel.Id).FirstOrDefault();
+		//		reminder.Message = reminderModel.Message;
+		//		reminder.ReminderDateTime = reminderModel.ReminderDateTime;
+		//		reminder.ContactId = reminderModel.ContactId;
+		//		reminder.Sent = reminderModel.Sent;
+		//		_db.Save();
 
-				return RedirectToAction("Index");
-			}
-			return this.View(reminderModel);
-        }
+		//		return RedirectToAction("Index");
+		//	}
+		//	return this.View(reminderModel);
+		//}
 
         //
         // GET: /Reminder/Delete/5
 
-        public ActionResult Delete(int id)
-        {
-			var reminder = _db.Reminders.Where(r => r.Id == id).FirstOrDefault();
-			var reminderModel = new ReminderModel()
-			{
-				Id = reminder.Id,
-				Message = reminder.Message,
-				ProfileId = reminder.ProfileId,
-				ReminderDateTime = reminder.ReminderDateTime
-			};
-			return View(reminderModel);
-        }
+		//public ActionResult Delete(int id)
+		//{
+		//	var reminder = _db.Reminders.Where(r => r.Id == id).FirstOrDefault();
+		//	var reminderModel = new ReminderModel()
+		//	{
+		//		Id = reminder.Id,
+		//		Message = reminder.Message,
+		//		ProfileId = reminder.ProfileId,
+		//		ReminderDateTime = reminder.ReminderDateTime
+		//	};
+		//	return View(reminderModel);
+		//}
 
         //
         // POST: /Reminder/Delete/5

@@ -1,50 +1,31 @@
-﻿@model IEnumerable<AppointmentReminder.Models.ReminderModel>
-
-@{
-    ViewBag.Title = "Index";
+﻿@{
+	ViewBag.InitModule = "ReminderModule";
 }
 
-<h2>Reminders</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-		<th>
-            @Html.DisplayNameFor(model => model.ContactName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReminderDateTime)
-        </th>
-	    <th>
-		    @Html.DisplayNameFor(model => model.Message)
-	    </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sent)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContactName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReminderDateTime)
-        </td>
-	    <td>
-		    @Html.DisplayFor(modelItem => item.Message)
-	    </td>
-        <th>
-            @Html.DisplayFor(modelItem => item.Sent)
-        </th>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+@section Scripts {
+	<script src="~/js/reminder.js"></script>
 }
 
-</table>
+<h2>My Reminders</h2>
+
+</br>
+
+<div data-ng-controller="ReminderIndexController">
+
+	<a href="/Reminder/Create" class="btn btn-primary">Create New</a>
+
+	</br><br/><br/>
+
+	<div data-ng-repeat="reminder in reminders" >
+		<div>Contact Name: {{reminder.ContactName}} </div>
+		<div>Message: {{reminder.Message}} </div>
+		<div>Reminder Date Time: {{reminder.ReminderDateTime}} </div>
+		<div>Reminder Sent: {{reminder.Sent}} </div>
+		</br>
+		<div>
+			<a href="/Reminder/Edit/{{reminder.Id}}" class="btn btn-primary">Edit</a>
+			<a href="/Reminder/Delete/{{reminder.Id}}" class="btn btn-primary">Delete</a>
+		</div>
+	</div>
+</div>
+
