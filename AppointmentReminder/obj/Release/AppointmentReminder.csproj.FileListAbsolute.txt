@@ -230,3 +230,4 @@ C:\practice\AppointmentReminder1\AppointmentReminder\obj\Release\AppointmentRemi
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\EntityFramework.SqlServer.dll
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\EntityFramework.SqlServer.xml
 C:\practice\AppointmentReminder1\AppointmentReminder\bin\WebApiContrib.IoC.StructureMap.dll
+C:\practice\AppointmentReminder1\AppointmentReminder\obj\Release\AppointmentReminder.csprojResolveAssemblyReference.cache

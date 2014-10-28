@@ -14,13 +14,17 @@
 
 	<a href="/Contact/Create" class="btn btn-primary">Create New</a>
 
-	</br>
+	</br><br/><br/>
 
 	<div data-ng-repeat="contact in contacts" >
 		<div>First Name: {{contact.FirstName}} </div>
 		<div>Last Name: {{contact.LastName}} </div>
 		<div>Cell Phone Number: {{contact.PhoneNumber}} </div>
 		<div>Email Address: {{contact.EmailAddress}} </div>
+		<div>Time Zone: {{contact.TimeZone}} </div>
+		<div>Active: {{contact.Active}} </div>
+		<div>Send Email: {{contact.SendEmail}} </div>
+		<div>Send SMS: {{contact.SendSMS}} </div>
 		</br>
 		<div>
 			<a href="/Contact/Edit/{{contact.Id}}" class="btn btn-primary">Edit</a>

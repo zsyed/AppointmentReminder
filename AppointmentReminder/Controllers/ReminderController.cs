@@ -48,23 +48,24 @@ namespace AppointmentReminder.Controllers
 
 		public ActionResult History()
 		{
-			var profile = _db.Profiles.Where(p => p.UserName == User.Identity.Name).FirstOrDefault();
-			var remindersHistory = new ReminderDb().ReminderHistories.Where(rh => rh.ProfileId == profile.Id).OrderByDescending(rh => rh.MessageSentDateTime);
-			var reminderHistoryModels = new List<ReminderHistoryModel>();
-			foreach (var reminderHistory in remindersHistory)
-			{
-				var contact = new ReminderDb().Contacts.Where(c => c.Id == reminderHistory.ContactId).FirstOrDefault();
-				reminderHistoryModels.Add(new ReminderHistoryModel()
-				{
-					Message = reminderHistory.Message,
-					ReminderDateTime = reminderHistory.ReminderDateTime,
-					ContactName = string.Format("{0} {1}", contact.FirstName, contact.LastName),
-					SMSSent = reminderHistory.SMSSent,
-					EmailSent = reminderHistory.EmailSent,
-					MessageSentDateTime = reminderHistory.MessageSentDateTime
-				});
-			}
-			return this.View(reminderHistoryModels);
+			//var profile = _db.Profiles.Where(p => p.UserName == User.Identity.Name).FirstOrDefault();
+			//var remindersHistory = new ReminderDb().ReminderHistories.Where(rh => rh.ProfileId == profile.Id).OrderByDescending(rh => rh.MessageSentDateTime);
+			//var reminderHistoryModels = new List<ReminderHistoryModel>();
+			//foreach (var reminderHistory in remindersHistory)
+			//{
+			//	var contact = new ReminderDb().Contacts.Where(c => c.Id == reminderHistory.ContactId).FirstOrDefault();
+			//	reminderHistoryModels.Add(new ReminderHistoryModel()
+			//	{
+			//		Message = reminderHistory.Message,
+			//		ReminderDateTime = reminderHistory.ReminderDateTime,
+			//		ContactName = string.Format("{0} {1}", contact.FirstName, contact.LastName),
+			//		SMSSent = reminderHistory.SMSSent,
+			//		EmailSent = reminderHistory.EmailSent,
+			//		MessageSentDateTime = reminderHistory.MessageSentDateTime
+			//	});
+			//}
+			//return this.View(reminderHistoryModels);
+			return this.View();
 		}
 
         //

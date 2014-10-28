@@ -1,4 +1,46 @@
-﻿@model IEnumerable<AppointmentReminder.Models.ReminderHistoryModel>
+﻿@{
+	ViewBag.InitModule = "ReminderHistoryModule";
+}
+
+@section Scripts {
+	<script src="~/js/reminder.js"></script>
+}
+
+<h2>Reminder History</h2>
+
+</br>
+
+<div data-ng-controller="ReminderHistoryController">
+	<div data-ng-repeat="reminderhistory in reminderhistories" >
+		<tr>
+			<td>
+				<div>Reminder Date Time {{reminderhistory.ReminderDateTime}} </div>
+			</td>
+			<td>
+				<div>Message {{reminderhistory.Message}} </div>
+			</td>
+			<td>
+				<div>Contact Name {{reminderhistory.ContactName}} </div>
+			</td>
+			<td>
+				<div>Email Sent {{reminderhistory.EmailSent}} </div>
+			</td>
+			<td>
+				<div>SMS Sent {{reminderhistory.SMSSent}} </div>
+			</td>
+			<td>
+				<div>Message Sent Date Time  {{reminderhistory.MessageSentDateTime}} </div>
+			</td>
+		</tr>
+		<br/>
+	</div>
+</div>
+
+
+
+
+
+@*@model IEnumerable<AppointmentReminder.Models.ReminderHistoryModel>
 
 @{
     ViewBag.Title = "History";
@@ -51,12 +93,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.MessageSentDateTime)
         </td>
-@*        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>*@
+
     </tr>
 }
 
-</table>
+</table>*@
