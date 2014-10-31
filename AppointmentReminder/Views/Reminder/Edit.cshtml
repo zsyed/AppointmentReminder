@@ -11,7 +11,13 @@
 <div data-ng-controller="ReminderEditController">
 	<form name ="editReminder" data-ng-submit="saveEditReminder()">
 		
-		<div><label>{{reminder.ContactName}}</label></div>
+		<div>
+			<select class="form-control" 
+			        data-ng-model="selectedContact" 
+			        data-ng-options="contact.name for contact in contacts">
+				<option></option>
+			</select>
+		</div>
 		<div>
 			<label>Reminder Date Time: </label>
 			<input required type="text" placeholder="Enter Reminder Date Time" data-ng-model="reminder.ReminderDateTime"/>
@@ -24,10 +30,6 @@
 			<label>Reminder Sent: </label>
 			<input required type="checkbox" data-ng-model="reminder.Sent"/>
 		</div>
-
-
-
-
 		<div></div>
 		<div>
 			<button class="btn btn-primary" type="submit">Update</button>

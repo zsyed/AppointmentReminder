@@ -218,6 +218,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ContactWebController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReminderContactWebController.cs" />
     <Compile Include="Controllers\ReminderHistoryWebController.cs" />
     <Compile Include="Data\IdentityService.cs" />
     <Compile Include="Data\IIdentityService.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="Data\Contact.cs" />
     <Compile Include="Data\MessageSMS.cs" />
     <Compile Include="Data\Profile.cs" />
+    <Compile Include="Data\ReminderContact.cs" />
     <Compile Include="Data\ReminderDb.cs" />
     <Compile Include="Data\Reminder.cs" />
     <Compile Include="Data\ReminderHistory.cs" />

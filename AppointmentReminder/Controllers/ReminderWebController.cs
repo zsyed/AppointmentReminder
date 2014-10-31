@@ -25,6 +25,7 @@ namespace AppointmentReminder.Controllers
 			try
 			{
 				var dbReminder = _db.Reminders.ToList().Find(r => r.Id == reminder.Id);
+				dbReminder.ContactId = reminder.ContactId;
 				dbReminder.Message = reminder.Message;
 				dbReminder.ProfileId = reminder.ProfileId;
 				dbReminder.ReminderDateTime = reminder.ReminderDateTime;
@@ -50,6 +51,7 @@ namespace AppointmentReminder.Controllers
 				remindersModel.Add(new ReminderModel()
 					{
 						Id = reminder.Id,
+						ContactId = reminder.ContactId,
 						Message = reminder.Message,
 						ProfileId = reminder.ProfileId,
 						ReminderDateTime = reminder.ReminderDateTime,
@@ -69,6 +71,7 @@ namespace AppointmentReminder.Controllers
 			var reminderModel = new ReminderModel()
 				                    {
 					                    Id = reminder.Id,
+										ContactId = reminder.ContactId,
 					                    Message = reminder.Message,
 					                    ProfileId = reminder.ProfileId,
 					                    ReminderDateTime = reminder.ReminderDateTime,
@@ -92,6 +95,29 @@ namespace AppointmentReminder.Controllers
 				_db.Reminders.Remove(dbReminder);
 				_db.Save();
 				return Request.CreateResponse(HttpStatusCode.OK);
+			}
+			catch (Exception)
+			{
+				return Request.CreateResponse(HttpStatusCode.BadRequest);
+			}
+		}
+
+		[HttpPost]
+		[ActionName("Reminder")]
+		public HttpResponseMessage Post([FromBody]ReminderModel reminderModel)
+		{
+			try
+			{
+				var profile = _db.Profiles.ToList().Find(p => p.UserName == User.Identity.Name);
+				var reminder = new Reminder();
+				reminder.ProfileId = profile.Id;
+				reminder.ContactId = reminderModel.ContactId;
+				reminder.Message = reminderModel.Message;
+				reminder.ReminderDateTime = reminderModel.ReminderDateTime;
+				reminder.Sent = reminderModel.Sent;
+				_db.Reminders.Add(reminder);
+				_db.Save();
+				return Request.CreateResponse(HttpStatusCode.Created, reminder);
 			}
 			catch (Exception)
 			{

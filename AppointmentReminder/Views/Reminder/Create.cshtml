@@ -1,65 +1,39 @@
-﻿@model AppointmentReminder.Models.ReminderModel
-
-@{
-    ViewBag.Title = "Create";
+﻿@{
+	ViewBag.InitModule = "ReminderModule";
 }
-
-<h2>Create</h2>
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-	    <legend>ReminderModel</legend>
-		
-		@Html.HiddenFor(model => model.ProfileId)
-
-	    <div class="editor-label">
-            @Html.LabelFor(model => model.ReminderDateTime)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ReminderDateTime)
-            @Html.ValidationMessageFor(model => model.ReminderDateTime)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Message)
-        </div>
-	    <div class="editor-field">
-		    @Html.EditorFor(model => model.Message)
-		    @Html.ValidationMessageFor(model => model.Message)
-	    </div>
-		
-        <div class="editor-label">
-             @Html.LabelFor(model => model.ContactName)
-        </div>
-        <div class="editor-field">
-    @(Html.Kendo().ComboBoxFor(model => model.ContactId)
-	.Value(Model.ContactId == 0 ? string.Empty: Model.ContactId.ToString())
-          .Name("ContactId")
-          .DataTextField("Text")
-          .DataValueField("Value")
-		  .Placeholder("Select Contact Name...")
-          .DataSource(source => {
-              source.Read(read =>
-              {
-                  read.Action("GetContacts", "Contact");
-              }); 
-          })
-    )
-        </div>
-
-	    <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+	<script src="~/js/reminder.js"></script>
 }
+
+<h2>Reminder - Create</h2>
+
+<div data-ng-controller="ReminderCreateController">
+	<form name ="createReminder" data-ng-submit="saveCreateReminder()">
+		
+		<div>
+			<select class="form-control" 
+			        data-ng-model="selectedContact" 
+			        data-ng-options="contact.name for contact in contacts">
+				<option value="" >Choose contact..</option>
+			</select>
+		</div>		
+
+		<div>
+			<label>Reminder Date Time: </label>
+			<input required type="text" placeholder="Enter Reminder Date Time" data-ng-model="reminder.ReminderDateTime"/>
+		</div>
+		<div>
+			<label>Message: </label>
+			<input required type="text" placeholder="Enter Message" data-ng-model="reminder.Message"/>
+		</div>
+		<div>
+			<label>Reminder Sent: </label>
+			<input type="checkbox" data-ng-model="reminder.Sent"/>
+		</div>
+		<div></div>
+		<div>
+			<button class="btn btn-primary" type="submit">Create</button>
+		</div>
+	</form>
+</div>
