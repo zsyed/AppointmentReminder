@@ -42,7 +42,7 @@ namespace AppointmentReminder.Controllers
 		public List<ReminderModel> GetAllReminders()
 		{
 			var profile = _db.Profiles.ToList().Find(p => p.UserName == User.Identity.Name);
-			var reminders = new ReminderDb().Reminders.Where(r => r.ProfileId == profile.Id).OrderBy(r => r.ReminderDateTime);
+			var reminders = new ReminderDb().Reminders.Where(r => r.ProfileId == profile.Id).OrderByDescending(r => r.ReminderDateTime);
 
 			var remindersModel = new List<ReminderModel>();
 			foreach (var reminder in reminders)

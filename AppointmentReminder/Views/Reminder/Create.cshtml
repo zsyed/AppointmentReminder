@@ -18,11 +18,17 @@
 				<option value="" >Choose contact..</option>
 			</select>
 		</div>		
-
-		<div>
-			<label>Reminder Date Time: </label>
-			<input required type="text" placeholder="Enter Reminder Date Time" data-ng-model="reminder.ReminderDateTime"/>
+		
+				<div>
+			<label>Date: </label>
+			      <datepicker data-ng-model="ReminderDate" min-date="minDate" show-weeks="false" class="well well-sm"></datepicker>
 		</div>
+
+				<div>
+			<label>Time: </label>
+			       <timepicker data-ng-model="ReminderTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+		</div>		
+
 		<div>
 			<label>Message: </label>
 			<input required type="text" placeholder="Enter Message" data-ng-model="reminder.Message"/>

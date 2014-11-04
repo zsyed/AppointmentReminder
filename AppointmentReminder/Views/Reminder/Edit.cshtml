@@ -12,16 +12,27 @@
 	<form name ="editReminder" data-ng-submit="saveEditReminder()">
 		
 		<div>
+						<label>Contact Name: </label>
 			<select class="form-control" 
 			        data-ng-model="selectedContact" 
 			        data-ng-options="contact.name for contact in contacts">
 				<option></option>
 			</select>
 		</div>
-		<div>
-			<label>Reminder Date Time: </label>
-			<input required type="text" placeholder="Enter Reminder Date Time" data-ng-model="reminder.ReminderDateTime"/>
+				<div>
+			<label>Date: </label>
+			      <datepicker data-ng-model="ReminderDate" min-date="minDate" show-weeks="false" class="well well-sm"></datepicker>
 		</div>
+
+				<div>
+			<label>Time: </label>
+			       <timepicker data-ng-model="ReminderTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+		</div>
+		
+
+
+
+
 		<div>
 			<label>Message: </label>
 			<input required type="text" placeholder="Enter Message" data-ng-model="reminder.Message"/>
