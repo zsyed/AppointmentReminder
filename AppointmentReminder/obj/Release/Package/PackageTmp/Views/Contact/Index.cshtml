@@ -14,22 +14,42 @@
 
 	<a href="/Contact/Create" class="btn btn-primary">Create New</a>
 
-	</br><br/><br/>
+</br><br/><br/>
+	
+		<table class="table">
+		<thead>
+			<tr>
+				<th> <b>First Name</b></th>
+				<th> <b>Last Name</b></th>
+				<th> <b>Phone Number</b></th>
+				<th> <b>Email Address</b></th>
+				<th> <b>Time Zone</b></th>
+				<th> <b>Active</b></th>
+				<th> <b>Email</b></th>
+				<th> <b>SMS</b></th>
+				<th></th>
+				<th></th>
+			<th></th>
 
-	<div data-ng-repeat="contact in contacts" >
-		<div>First Name: {{contact.FirstName}} </div>
-		<div>Last Name: {{contact.LastName}} </div>
-		<div>Cell Phone Number: {{contact.PhoneNumber}} </div>
-		<div>Email Address: {{contact.EmailAddress}} </div>
-		<div>Time Zone: {{contact.TimeZone}} </div>
-		<div>Active: {{contact.Active}} </div>
-		<div>Send Email: {{contact.SendEmail}} </div>
-		<div>Send SMS: {{contact.SendSMS}} </div>
-		</br>
-		<div>
-			<a href="/Contact/Edit/{{contact.Id}}" class="btn btn-primary">Edit</a>
-			<a href="/Contact/Delete/{{contact.Id}}" class="btn btn-primary">Delete</a>
-		</div>
-	</div>
+			</tr>
+				
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="contact in contacts">
+				<td>{{contact.FirstName}}</td>
+				<td>{{contact.LastName}}</td>
+				<td>{{contact.PhoneNumber}}</td>
+				<td>{{contact.EmailAddress}}</td>
+				<td>{{contact.TimeZone}}</td>
+				<td>{{contact.Active == true? "Yes": "No"}}</td>
+				<td>{{contact.SendEmail == true? "Yes": "No"}}</td>
+				<td>{{contact.SendSMS == true? "Yes": "No"}}</td>
+				<td><a href="/Contact/Edit/{{contact.Id}}" class="btn btn-primary">Edit</a></td>
+				<td><a href="/Contact/Delete/{{contact.Id}}" class="btn btn-primary">Delete</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+
 </div>
 

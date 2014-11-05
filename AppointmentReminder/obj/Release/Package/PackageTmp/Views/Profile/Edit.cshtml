@@ -6,40 +6,45 @@
 	<script src="~/js/profile-index.js"></script>
 }
 
-<h2>My Profile - Edit</h2>
-
 <div data-ng-controller="ProfileEditController">
-	<form name ="editProfile" data-ng-submit="saveEditProfile()">
-		<div>
-			<label>First Name: </label>
-			<input required type="text" placeholder="Enter First Name" data-ng-model="profile.FirstName"/>
+
+	<form class="form-horizontal" name ="editProfile" data-ng-submit="saveEditProfile()">
+	<fieldset>
+		<legend>Edit Profile</legend>
+		<div class="form-group" >
+
+
+			<label class="col-sm-3 control-label"  >First Name: </label>
+			<div class="col-sm-9" >
+				<input class="form-control"  required type="text" placeholder="Enter First Name" data-ng-model="profile.FirstName"/>
+			</div>
+			<label class="col-sm-3 control-label"  >Last Name: </label>
+			<div class="col-sm-9" >
+				<input class="form-control"  required type="text" placeholder="Enter Last Name" data-ng-model="profile.LastName"/>
+			</div>
+			<label class="col-sm-3 control-label"  >Email Address: </label>
+			<div class="col-sm-9" >
+				<input class="form-control"  required type="text" placeholder="Enter Email Address" data-ng-model="profile.EmailAddress"/>
+			</div>
+			<label class="col-sm-3 control-label"  >Cell Phone Number: </label>
+			<div class="col-sm-9" >
+				<input class="form-control"  required type="text" placeholder="Enter Cell Phone Number" data-ng-model="profile.PhoneNumber"/>
+			</div>
+			<label class="col-sm-3 control-label"  >DeActivate: </label>
+			<div class="col-sm-9" >
+				<input class="form-control" value="true"  type="checkbox" data-ng-model="profile.DeActivate"/>
+			</div>
+	
 		</div>
-		<div>
-			<label>Last Name: </label>
-			<input required type="text" placeholder="Enter Last Name" data-ng-model="profile.LastName"/>
-		</div>
-		<div>
-			<label>Email Address: </label>
-			<input required type="text" placeholder="Enter Email Address" data-ng-model="profile.EmailAddress"/>
-		</div>
-		<div>
-			<label>Cell Phone Number: </label>
-			<input required type="text" placeholder="Enter Phone Number" data-ng-model="profile.PhoneNumber"/>
-		</div>
-		<br /><br />
-		<div>
-			<label>DeActivate: </label>
-			<input type="checkbox" data-ng-model="profile.DeActivate"/>
-			
-		</div>
-		<div>
-			This setting will deactivate your profile and all the related reminders. Check this box carefully.
-		</div>
-		<br /><br />
-		<div></div>
-		<div>
-			<button class="btn btn-primary" type="submit">Update</button>
-		</div>
-	</form>
+	</fieldset>
+		
+
 </div>
+
+<div class="col-sm-9 col-sm-offset-3" >
+	<input type="submit" class="btn btn-primary" value="Update"/>
+	</div>
+
+</form>
+
 

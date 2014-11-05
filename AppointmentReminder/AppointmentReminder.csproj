@@ -236,6 +236,7 @@
     <Compile Include="Data\ReminderDb.cs" />
     <Compile Include="Data\Reminder.cs" />
     <Compile Include="Data\ReminderHistory.cs" />
+    <Compile Include="Data\Schedule.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\SmDependencyResolver.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />

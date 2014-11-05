@@ -17,12 +17,12 @@
 	</br>
 
 	<div data-ng-show="profile.FirstName != null">
-		<div>First Name: {{profile.FirstName}} </div>
-		<div>Last Name: {{profile.LastName}} </div>
-		<div>Cell Phone Number: {{profile.PhoneNumber}} </div>
-		<div>Email Address: {{profile.EmailAddress}} </div>
+		<div> <label>First Name:</label> {{profile.FirstName}} </div>
+		<div> <label>Last Name:</label>{{profile.LastName}} </div>
+		<div> <label>Cell Phone Number:</label>{{profile.PhoneNumber}} </div>
+		<div> <label>Email Address:</label>{{profile.EmailAddress}} </div>
 		<br /><br />
-		<div>Active: {{!profile.DeActivate}} </div>
+		<div><label>Active:</label> {{!profile.DeActivate}} </div>
 		</br><br />
 		<div>
 			<a href="/Profile/Edit" class="btn btn-primary">Edit</a>

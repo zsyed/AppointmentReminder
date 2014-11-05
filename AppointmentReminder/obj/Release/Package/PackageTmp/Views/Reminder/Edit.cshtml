@@ -1,73 +1,52 @@
-﻿@model AppointmentReminder.Models.ReminderModel
-
-@{
-    ViewBag.Title = "Edit";
+﻿@{
+	ViewBag.InitModule = "ReminderModule";
 }
-
-<h2>Edit</h2>
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>ReminderModel</legend>
-
-        @Html.HiddenFor(model => model.Id)
-		
-		
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ContactId)
-        </div>
-        <div class="editor-field">
-    @(Html.Kendo().ComboBoxFor(model => model.ContactId)
-          .Name("ContactId")
-          .DataTextField("Text")
-          .DataValueField("Value")
-		  .Placeholder("Select Contact Name...")
-          .DataSource(source => {
-              source.Read(read =>
-              {
-                  read.Action("GetContacts", "Contact");
-              }); 
-          })
-    )
-        </div>
-
-	    <div class="editor-label">
-            @Html.LabelFor(model => model.ReminderDateTime)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ReminderDateTime)
-            @Html.ValidationMessageFor(model => model.ReminderDateTime)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Message)
-        </div>
-	    <div class="editor-field">
-			@(Html.Kendo().Editor()
-				.Name("Message")
-			)
-	    </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Sent)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Sent)
-            @Html.ValidationMessageFor(model => model.Sent)
-        </div>
-
-	    <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+	<script src="~/js/reminder.js"></script>
 }
+
+<h2>Reminder - Edit</h2>
+
+<div data-ng-controller="ReminderEditController">
+	<form name ="editReminder" data-ng-submit="saveEditReminder()">
+		
+		<div>
+						<label>Contact Name: </label>
+			<select class="form-control" 
+			        data-ng-model="selectedContact" 
+			        data-ng-options="contact.name for contact in contacts">
+				<option></option>
+			</select>
+		</div>
+				<div>
+			<label>Date: </label>
+			      <datepicker data-ng-model="ReminderDate" min-date="minDate" show-weeks="false" class="well well-sm"></datepicker>
+		</div>
+
+				<div>
+			<label>Time: </label>
+			       <timepicker data-ng-model="ReminderTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+		</div>
+		
+
+
+
+
+		<div>
+			<label>Message: </label>
+			<input required type="text" placeholder="Enter Message" data-ng-model="reminder.Message"/>
+		</div>
+		<div>
+			<label>Reminder Sent: </label>
+			<input type="checkbox" data-ng-model="reminder.Sent"/>
+		</div>
+		<div></div>
+		<div>
+			<button class="btn btn-primary" type="submit">Update</button>
+		</div>
+	</form>
+</div>
+
+
+

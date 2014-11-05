@@ -2,8 +2,6 @@
 
 	var app = angular.module("ProfileModule", []);
 
-
-
 	var ProfileIndexController = function($scope, $http) {
 		$http.get("/api/ProfileWeb")
 			.then(function(response) {

@@ -1,33 +1,29 @@
-﻿@model AppointmentReminder.Models.ReminderModel
-
-@{
-    ViewBag.Title = "Delete";
+﻿@{
+	ViewBag.InitModule = "ReminderModule";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>ReminderModel</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ReminderDateTime)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ReminderDateTime)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Message)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Message)
-    </div>
-</fieldset>
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+@section Scripts {
+	<script src="~/js/reminder.js"></script>
 }
+
+<h2>Reminder - Delete</h2>
+
+<div data-ng-controller="ReminderDeleteController">
+	<form name ="deleteReminder" data-ng-submit="saveDeleteReminder()">
+		<div>
+			<label>Contact Name: {{reminder.ContactName}} </label>
+		</div>
+		<div>
+			<label>Message: {{reminder.Message}} </label>
+		</div>
+		<div>
+			<label>Reminder Date Time: {{reminder.ReminderDateTime}} </label>
+		</div>
+		<div></div>
+		<div>
+			<button class="btn btn-primary" type="submit">Delete</button>
+		</div>
+	</form>
+</div>
+
+

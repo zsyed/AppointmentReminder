@@ -1,62 +1,39 @@
-﻿@model IEnumerable<AppointmentReminder.Models.ReminderHistoryModel>
-
-@{
-    ViewBag.Title = "History";
+﻿@{
+	ViewBag.InitModule = "ReminderModule";
 }
 
-<h2>History..</h2>
-
-<table>
-    <tr>
-
-        <th>
-            @Html.DisplayNameFor(model => model.ReminderDateTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Message)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ContactName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmailSent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SMSSent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MessageSentDateTime)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.ReminderDateTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Message)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContactName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmailSent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SMSSent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MessageSentDateTime)
-        </td>
-@*        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>*@
-    </tr>
+@section Scripts {
+	<script src="~/js/reminder.js"></script>
 }
 
-</table>
+<h2>Reminder History</h2>
+
+</br>
+
+<div data-ng-controller="ReminderHistoryController">
+	<table class="table">
+		<thead>
+			<tr>
+				<th> <b>Scheduled</b></th>
+				<th> <b>Sent</b></th>
+				<th> <b>Message</b></th>
+				<th> <b>Contact</b></th>
+				<th> <b>Email</b></th>
+				<th> <b>SMS</b></th>
+
+			</tr>
+				
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="reminderhistory in reminderhistories">
+				<td>{{reminderhistory.ReminderDateTime | date: 'EEE MM/dd/yyyy hh:mm a'}}</td>
+				<td>{{reminderhistory.MessageSentDateTime | date: 'EEE MM/dd/yyyy hh:mm a'}}</td>
+				<td>{{reminderhistory.Message}}</td>
+				<td>{{reminderhistory.ContactName}}</td>
+				<td>{{reminderhistory.EmailSent == true? "Yes": "No"}}</td>
+				<td>{{reminderhistory.SMSSent == true? "Yes": "No"}}</td>
+
+			</tr>
+		</tbody>
+	</table>
+	</div>

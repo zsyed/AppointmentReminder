@@ -26,13 +26,18 @@ namespace AppointmentReminder.Controllers
 
 			switch (TimeZone)
 			{
-				case "PST": prodServerTimeDifference = -7; break;
-				case "MST": prodServerTimeDifference = -6; break;
-				case "CST": prodServerTimeDifference = -5; break;
-				case "EST": prodServerTimeDifference = -4; break;
+				case "PST": prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["PSTOffSetHours"]); break;
+				case "MST": prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["MSTOffSetHours"]); break;
+				case "CST": prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["CSTOffSetHours"]); break;
+				case "EST": prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["ESTOffSetHours"]); break;
 			}
 
 			return DateTime.Now.AddHours(prodServerTimeDifference).ToString(); 
+		}
+
+		public string CurrentDateTime()
+		{
+			return DateTime.Now.ToString();
 		}
 
 		public JsonResult Send()
@@ -53,10 +58,10 @@ namespace AppointmentReminder.Controllers
 
 					switch (contact.TimeZone)
 					{
-						case "PST": prodServerTimeDifference = -7; break;
-						case "MST": prodServerTimeDifference = -6; break;
-						case "CST": prodServerTimeDifference = -5; break;
-						case "EST": prodServerTimeDifference = -4; break;
+						case "PST": prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["PSTOffSetHours"]); break;
+						case "MST": prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["MSTOffSetHours"]); break;
+						case "CST": prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["CSTOffSetHours"]); break;
+						case "EST": prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["ESTOffSetHours"]); break;
 					}
 
 #if DEBUG

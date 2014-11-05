@@ -1,50 +1,47 @@
-﻿@model IEnumerable<AppointmentReminder.Models.ReminderModel>
-
-@{
-    ViewBag.Title = "Index";
+﻿@{
+	ViewBag.InitModule = "ReminderModule";
 }
 
-<h2>Reminders</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-		<th>
-            @Html.DisplayNameFor(model => model.ContactName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReminderDateTime)
-        </th>
-	    <th>
-		    @Html.DisplayNameFor(model => model.Message)
-	    </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sent)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContactName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReminderDateTime)
-        </td>
-	    <td>
-		    @Html.DisplayFor(modelItem => item.Message)
-	    </td>
-        <th>
-            @Html.DisplayFor(modelItem => item.Sent)
-        </th>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+@section Scripts {
+	<script src="~/js/reminder.js"></script>
 }
 
-</table>
+<h2>My Reminders</h2>
+
+</br>
+
+<div data-ng-controller="ReminderIndexController">
+
+	<a href="/Reminder/Create" class="btn btn-primary">Create New</a>
+
+</br><br/><br/>
+	
+	<table class="table">
+		<thead>
+			<tr>
+				<th> <b>Contact</b></th>
+				<th> <b>Message</b></th>
+				<th> <b>Date</b></th>
+				<th> <b>Time</b></th>
+				<th> <b>Sent</b></th>
+				<th></th>
+			<th></th>
+
+			</tr>
+				
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="reminder in reminders">
+				<td>{{reminder.ContactName}}</td>
+				<td>{{reminder.Message}}</td>
+				<td>{{reminder.ReminderDateTime | date: 'EEE MM/dd/yyyy' }}</td>
+				<td>{{reminder.ReminderDateTime | date: 'hh:mm a' }}</td>
+				<td>{{reminder.Sent == true? "Yes": "No"}}</td>
+				<td><a href="/Reminder/Edit/{{reminder.Id}}" class="btn btn-primary">Edit</a></td>
+				<td><a href="/Reminder/Delete/{{reminder.Id}}" class="btn btn-primary">Delete</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
