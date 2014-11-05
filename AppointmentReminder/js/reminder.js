@@ -61,6 +61,7 @@
 			$scope.reminder.ContactId = contactId;
 			$scope.ReminderDate = $filter('date')($scope.ReminderDate, 'MM/dd/yyyy');
 			$scope.ReminderTime = $filter('date')($scope.ReminderTime, 'hh:mm a');
+			$scope.ReminderTime = $scope.ReminderTime.substr($scope.ReminderTime.length - 8);
 			$scope.reminder.ReminderDateTime = $scope.ReminderDate + " " + $scope.ReminderTime;
 			$http.put("/api/ReminderWeb", $scope.reminder)
 				.then(function (response) {
@@ -125,6 +126,10 @@
 		};
 
 		$scope.ismeridian = true;
+		
+		$scope.toggleMode = function () {
+			$scope.ismeridian = !$scope.ismeridian;
+		};
 		/* Time */
 	};
 

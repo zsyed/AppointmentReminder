@@ -14,18 +14,34 @@
 
 	<a href="/Reminder/Create" class="btn btn-primary">Create New</a>
 
-	</br><br/><br/>
+</br><br/><br/>
+	
+	<table class="table">
+		<thead>
+			<tr>
+				<th> <b>Contact Name</b></th>
+				<th> <b>Message</b></th>
+				<th> <b>Date</b></th>
+				<th> <b>Time</b></th>
+				<th> <b>Sent</b></th>
+				<th></th>
+			<th></th>
 
-	<div data-ng-repeat="reminder in reminders" >
-		<div>Contact Name: {{reminder.ContactName}} </div>
-		<div>Message: {{reminder.Message}} </div>
-		<div>Reminder Date Time: {{reminder.ReminderDateTime | date: 'yyyy-MM-dd hh:mm a' }} </div>
-		<div>Reminder Sent: {{reminder.Sent}} </div>
-		</br>
-		<div>
-			<a href="/Reminder/Edit/{{reminder.Id}}" class="btn btn-primary">Edit</a>
-			<a href="/Reminder/Delete/{{reminder.Id}}" class="btn btn-primary">Delete</a>
-		</div>
-	</div>
+			</tr>
+				
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="reminder in reminders">
+				<td>{{reminder.ContactName}}</td>
+				<td>{{reminder.Message}}</td>
+				<td>{{reminder.ReminderDateTime | date: 'EEE MM/dd/yyyy' }}</td>
+				<td>{{reminder.ReminderDateTime | date: 'hh:mm a' }}</td>
+				<td>{{reminder.Sent == true? "Yes": "No"}}</td>
+				<td><a href="/Reminder/Edit/{{reminder.Id}}" class="btn btn-primary">Edit</a></td>
+				<td><a href="/Reminder/Delete/{{reminder.Id}}" class="btn btn-primary">Delete</a></td>
+			</tr>
+		</tbody>
+	</table>
+
 </div>
 

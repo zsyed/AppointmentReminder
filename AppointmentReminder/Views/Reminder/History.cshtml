@@ -11,29 +11,29 @@
 </br>
 
 <div data-ng-controller="ReminderHistoryController">
-	<div data-ng-repeat="reminderhistory in reminderhistories" >
-		<tr>
-			<td>
-				<div>Reminder Date Time {{reminderhistory.ReminderDateTime}} </div>
-			</td>
-			<td>
-				<div>Message {{reminderhistory.Message}} </div>
-			</td>
-			<td>
-				<div>Contact Name {{reminderhistory.ContactName}} </div>
-			</td>
-			<td>
-				<div>Email Sent {{reminderhistory.EmailSent}} </div>
-			</td>
-			<td>
-				<div>SMS Sent {{reminderhistory.SMSSent}} </div>
-			</td>
-			<td>
-				<div>Message Sent Date Time  {{reminderhistory.MessageSentDateTime}} </div>
-			</td>
-		</tr>
-		<br/>
+	<table class="table">
+		<thead>
+			<tr>
+				<th> <b>Scheduled</b></th>
+				<th> <b>Sent</b></th>
+				<th> <b>Message</b></th>
+				<th> <b>Contact Name</b></th>
+				<th> <b>Email</b></th>
+				<th> <b>SMS</b></th>
+
+			</tr>
+				
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="reminderhistory in reminderhistories">
+				<td>{{reminderhistory.ReminderDateTime | date: 'EEE MM/dd/yyyy hh:mm a'}}</td>
+				<td>{{reminderhistory.MessageSentDateTime | date: 'EEE MM/dd/yyyy hh:mm a'}}</td>
+				<td>{{reminderhistory.Message}}</td>
+				<td>{{reminderhistory.ContactName}}</td>
+				<td>{{reminderhistory.EmailSent == true? "Yes": "No"}}</td>
+				<td>{{reminderhistory.SMSSent == true? "Yes": "No"}}</td>
+
+			</tr>
+		</tbody>
+	</table>
 	</div>
-</div>
-
-
