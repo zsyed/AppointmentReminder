@@ -96,7 +96,8 @@ namespace AppointmentReminder.Controllers
 
 				TimeSpan timeDifference = reminder.ReminderDateTime.TimeOfDay - serverCurrentDateTime.TimeOfDay;
 				int RemdinerMinutes = Convert.ToInt32(ConfigurationManager.AppSettings["RemdinerMinutes"]);
-				if (timeDifference.Minutes >= 0 && timeDifference.Minutes <= RemdinerMinutes)
+
+				if ((reminder.ReminderDateTime.Hour == serverCurrentDateTime.Hour) &&  (timeDifference.Minutes >= 0 && timeDifference.Minutes <= RemdinerMinutes))
 				{
 					
 					if (contact.SendEmail)
