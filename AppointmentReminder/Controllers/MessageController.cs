@@ -94,9 +94,9 @@ namespace AppointmentReminder.Controllers
 				var contact = new ReminderDb().Contacts.Where(c => c.Id == reminder.ContactId).FirstOrDefault();
 				var profile = _db.Profiles.ToList().Find(p => p.Id == reminder.ProfileId);
 
-				TimeSpan timeDifference = reminder.ReminderDateTime - serverCurrentDateTime;
+				TimeSpan timeDifference = reminder.ReminderDateTime.TimeOfDay - serverCurrentDateTime.TimeOfDay;
 				int RemdinerMinutes = Convert.ToInt32(ConfigurationManager.AppSettings["RemdinerMinutes"]);
-				if (timeDifference.Minutes <= RemdinerMinutes)
+				if (timeDifference.Minutes >= 0 && timeDifference.Minutes <= RemdinerMinutes)
 				{
 					
 					if (contact.SendEmail)
