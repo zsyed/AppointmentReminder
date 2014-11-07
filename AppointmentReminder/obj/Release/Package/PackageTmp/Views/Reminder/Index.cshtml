@@ -23,6 +23,8 @@
 				<th> <b>Message</b></th>
 				<th> <b>Date</b></th>
 				<th> <b>Time</b></th>
+				<th> <b>Recurrence</b></th>
+				<th> <b>WeekDay</b></th>
 				<th> <b>Sent</b></th>
 				<th></th>
 			<th></th>
@@ -34,8 +36,10 @@
 			<tr data-ng-repeat="reminder in reminders">
 				<td>{{reminder.ContactName}}</td>
 				<td>{{reminder.Message}}</td>
-				<td>{{reminder.ReminderDateTime | date: 'EEE MM/dd/yyyy' }}</td>
+				<td>{{reminder.ReminderDateTime.substring(0,4) == '1901' ? "None" : reminder.ReminderDateTime | date: 'EEE MM/dd/yyyy' }}</td>
 				<td>{{reminder.ReminderDateTime | date: 'hh:mm a' }}</td>
+				<td>{{reminder.Recurrence}}</td>
+				<td>{{reminder.WeekDay}}</td>
 				<td>{{reminder.Sent == true? "Yes": "No"}}</td>
 				<td><a href="/Reminder/Edit/{{reminder.Id}}" class="btn btn-primary">Edit</a></td>
 				<td><a href="/Reminder/Delete/{{reminder.Id}}" class="btn btn-primary">Delete</a></td>
@@ -45,3 +49,4 @@
 
 </div>
 
+		@*<td>{{reminder.ReminderDateTime | date: 'EEE MM/dd/yyyy'}}</td>*@

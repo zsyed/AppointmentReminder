@@ -12,26 +12,41 @@
 	<form name ="editReminder" data-ng-submit="saveEditReminder()">
 		
 		<div>
-						<label>Contact Name: </label>
+			<label>Contact Name: </label>
 			<select class="form-control" 
 			        data-ng-model="selectedContact" 
 			        data-ng-options="contact.name for contact in contacts">
 				<option></option>
 			</select>
 		</div>
-				<div>
-			<label>Date: </label>
-			      <datepicker data-ng-model="ReminderDate" min-date="minDate" show-weeks="false" class="well well-sm"></datepicker>
+		
+		<div>
+			<label>Recurrence: </label>
+			<select id="ddlRecurrence" class="form-control" 
+			        data-ng-model="selectedRecurrence" 
+			        data-ng-options="recurrence.idrecur for recurrence in recurrences">
+				<option></option>
+			</select>
 		</div>
-
-				<div>
-			<label>Time: </label>
-			       <timepicker data-ng-model="ReminderTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+		<div data-ng-show="weekdayshow"  >
+		<label>Week Day: </label>
+		<select id="ddlWeekday" class="form-control" 
+			data-ng-model="selectedWeekday" 
+			data-ng-options="weekday.idweek for weekday in weekdays">
+		<option></option>
+		</select>
 		</div>
 		
 
+		<div data-ng-show="calendarshow"  >
+			<label>Date: </label>
+			<datepicker data-ng-model="ReminderDate" min-date="minDate" show-weeks="false" class="well well-sm"></datepicker>
+		</div>
 
-
+		<div>
+			<label>Time: </label>
+			<timepicker data-ng-model="ReminderTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+		</div>
 
 		<div>
 			<label>Message: </label>

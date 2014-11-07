@@ -17,7 +17,7 @@
 			<label>Message: {{reminder.Message}} </label>
 		</div>
 		<div>
-			<label>Reminder Date Time: {{reminder.ReminderDateTime}} </label>
+			<label>Reminder Date Time: {{reminder.ReminderDateTime.substring(0,4) == '1901' ? "None" : reminder.ReminderDateTime | date: 'EEE MM/dd/yyyy hh:mma' }}</label>
 		</div>
 		<div></div>
 		<div>
@@ -27,3 +27,4 @@
 </div>
 
 
+@*{{reminder.ReminderDateTime}}*@

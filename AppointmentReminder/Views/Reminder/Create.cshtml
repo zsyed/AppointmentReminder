@@ -19,7 +19,24 @@
 			</select>
 		</div>		
 		
-				<div>
+		<div>
+			<label>Recurrence: </label>
+			<select id="ddlRecurrence" class="form-control" 
+			        data-ng-model="selectedRecurrence" 
+			        data-ng-options="recurrence.idrecur for recurrence in recurrences">
+				<option>Choose..</option>
+			</select>
+		</div>
+		<div data-ng-show="weekdayshow"  >
+		<label>Week Day: </label>
+		<select id="ddlWeekday" class="form-control" 
+			data-ng-model="selectedWeekday" 
+			data-ng-options="weekday.idweek for weekday in weekdays">
+		<option>Choose..</option>
+		</select>
+		</div>
+		
+		<div data-ng-show="calendarshow"  >
 			<label>Date: </label>
 			      <datepicker data-ng-model="ReminderDate" min-date="minDate" show-weeks="false" class="well well-sm"></datepicker>
 		</div>

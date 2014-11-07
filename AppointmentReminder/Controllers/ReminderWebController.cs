@@ -30,6 +30,8 @@ namespace AppointmentReminder.Controllers
 				dbReminder.ProfileId = reminder.ProfileId;
 				dbReminder.ReminderDateTime = reminder.ReminderDateTime;
 				dbReminder.Sent = reminder.Sent;
+				dbReminder.Recurrence = reminder.Recurrence;
+				dbReminder.WeekDay = reminder.WeekDay;
 				_db.Save();
 				return Request.CreateResponse(HttpStatusCode.Created, reminder);
 			}
@@ -56,6 +58,8 @@ namespace AppointmentReminder.Controllers
 						ProfileId = reminder.ProfileId,
 						ReminderDateTime = reminder.ReminderDateTime,
 						ContactName = string.Format("{0} {1}", contact.FirstName, contact.LastName),
+						Recurrence = reminder.Recurrence,
+						WeekDay = reminder.WeekDay,
 						Sent = reminder.Sent
 					}
 				);
@@ -76,6 +80,8 @@ namespace AppointmentReminder.Controllers
 					                    ProfileId = reminder.ProfileId,
 					                    ReminderDateTime = reminder.ReminderDateTime,
 					                    ContactName = string.Format("{0} {1}", contact.FirstName, contact.LastName),
+										Recurrence = reminder.Recurrence,
+										WeekDay = reminder.WeekDay,
 					                    Sent = reminder.Sent
 				                    };
 			return reminderModel;
@@ -114,6 +120,8 @@ namespace AppointmentReminder.Controllers
 				reminder.ContactId = reminderModel.ContactId;
 				reminder.Message = reminderModel.Message;
 				reminder.ReminderDateTime = reminderModel.ReminderDateTime;
+				reminder.Recurrence = reminderModel.Recurrence;
+				reminder.WeekDay = reminderModel.WeekDay;
 				reminder.Sent = reminderModel.Sent;
 				_db.Reminders.Add(reminder);
 				_db.Save();

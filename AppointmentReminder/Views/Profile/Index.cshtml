@@ -22,7 +22,7 @@
 		<div> <label>Cell Phone Number:</label>{{profile.PhoneNumber}} </div>
 		<div> <label>Email Address:</label>{{profile.EmailAddress}} </div>
 		<br /><br />
-		<div><label>Active:</label> {{!profile.DeActivate}} </div>
+		<div><label>Active:</label> {{profile.DeActivate== true? "No": "Yes"}} </div>
 		</br><br />
 		<div>
 			<a href="/Profile/Edit" class="btn btn-primary">Edit</a>

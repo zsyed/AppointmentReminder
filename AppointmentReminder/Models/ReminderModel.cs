@@ -27,6 +27,10 @@ namespace AppointmentReminder.Models
 
 		public string ContactName { get; set; }
 
+		public string Recurrence { get; set; }
+
+		public string WeekDay { get; set; }
+
 		public bool Sent { get; set; }
 	}
 }
