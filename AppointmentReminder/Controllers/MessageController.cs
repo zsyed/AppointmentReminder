@@ -99,27 +99,35 @@ namespace AppointmentReminder.Controllers
 
 				if ((reminder.ReminderDateTime.Hour == serverCurrentDateTime.Hour) &&  (timeDifference.Minutes >= 0 && timeDifference.Minutes <= RemdinerMinutes))
 				{
-					
-					if (contact.SendEmail)
-					{
-						this.SendEmailMessage(reminder, profile, contact);
-						RecordSendEmailHistory(reminder, contact, profile, serverCurrentDateTime);
-						reminderSent = true;
-					}
-
-					if (contact.SendSMS)
-					{
-						this.SendSMSMessage(reminder, profile, contact);
-						RecordSendSMSHistory(reminder, contact, profile, serverCurrentDateTime);
-						reminderSent = true;
-					}
-
-					if (reminderSent)
-					{
-						RecordReminderSent(reminder);	
-					}
+					reminderSent = SendNotification(contact, reminder, profile, serverCurrentDateTime); 
 				}
 			}
+			return reminderSent;
+		}
+
+		private bool SendNotification(Contact contact, Reminder reminder, Profile profile, DateTime serverCurrentDateTime)
+		{
+			bool reminderSent = false;
+
+			if (contact.SendEmail)
+			{
+				this.SendEmailMessage(reminder, profile, contact);
+				RecordSendEmailHistory(reminder, contact, profile, serverCurrentDateTime);
+				reminderSent = true;
+			}
+
+			if (contact.SendSMS)
+			{
+				this.SendSMSMessage(reminder, profile, contact);
+				RecordSendSMSHistory(reminder, contact, profile, serverCurrentDateTime);
+				reminderSent = true;
+			}
+
+			if (reminderSent)
+			{
+				RecordReminderSent(reminder);
+			}
+
 			return reminderSent;
 		}
 
