@@ -55,7 +55,8 @@ namespace AppointmentReminder.Controllers
 					{
 						// get server current datetime.
 						DateTime serverCurrentDateTime = this.ServerCurrentDateTime(reminder);
-						if (SendDaily(reminder, serverCurrentDateTime))
+
+						if (SendDaily(contact, reminder, serverCurrentDateTime))
 						{
 							contactList.Add(new SelectListItem()
 							{
@@ -64,11 +65,24 @@ namespace AppointmentReminder.Controllers
 							});
 						}
 
-						//		is it daily.. figure out daily reminder send
+						if (SendWeekly(contact, reminder, serverCurrentDateTime))
+						{
+							contactList.Add(new SelectListItem()
+							{
+								Text = string.Format("{0} {1}", contact.FirstName.Trim(), contact.LastName.Trim()),
+								Value = reminder.Message
+							});
+						}
 
-						//		is it weekly.. figure out weekly reminder send
+						if (SendOnce(contact, reminder, serverCurrentDateTime))
+						{
+							contactList.Add(new SelectListItem()
+							{
+								Text = string.Format("{0} {1}", contact.FirstName.Trim(), contact.LastName.Trim()),
+								Value = reminder.Message
+							});
+						}
 
-						//		is it once... figure out just once send code.
 					}
 				}
 			}
@@ -86,12 +100,29 @@ namespace AppointmentReminder.Controllers
 
 		}
 
-		private bool SendDaily(Reminder reminder, DateTime serverCurrentDateTime)
+		private bool SendOnce(Contact contact, Reminder reminder, DateTime serverCurrentDateTime)
+		{
+			bool reminderSent = false;
+			if (reminder.Recurrence == "Once")
+			{
+				var profile = _db.Profiles.ToList().Find(p => p.Id == reminder.ProfileId);
+
+				TimeSpan timeDifference = reminder.ReminderDateTime.TimeOfDay - serverCurrentDateTime.TimeOfDay;
+				int RemdinerMinutes = Convert.ToInt32(ConfigurationManager.AppSettings["RemdinerMinutes"]);
+
+				if ((reminder.ReminderDateTime.Date == serverCurrentDateTime.Date) && (reminder.ReminderDateTime.Hour == serverCurrentDateTime.Hour) && (timeDifference.Minutes >= 0 && timeDifference.Minutes <= RemdinerMinutes))
+				{
+					reminderSent = SendNotification(contact, reminder, profile, serverCurrentDateTime);
+				}
+			}
+			return reminderSent;
+		}
+
+		private bool SendDaily(Contact contact, Reminder reminder, DateTime serverCurrentDateTime)
 		{
 			bool reminderSent = false;
 			if (reminder.Recurrence == "Daily")
 			{
-				var contact = new ReminderDb().Contacts.Where(c => c.Id == reminder.ContactId).FirstOrDefault();
 				var profile = _db.Profiles.ToList().Find(p => p.Id == reminder.ProfileId);
 
 				TimeSpan timeDifference = reminder.ReminderDateTime.TimeOfDay - serverCurrentDateTime.TimeOfDay;
@@ -104,6 +135,43 @@ namespace AppointmentReminder.Controllers
 			}
 			return reminderSent;
 		}
+
+		private bool SendWeekly(Contact contact, Reminder reminder, DateTime serverCurrentDateTime)
+		{
+			bool reminderSent = false;
+			if (reminder.Recurrence == "Weekly")
+			{
+				var profile = _db.Profiles.ToList().Find(p => p.Id == reminder.ProfileId);
+
+				TimeSpan timeDifference = reminder.ReminderDateTime.TimeOfDay - serverCurrentDateTime.TimeOfDay;
+				int RemdinerMinutes = Convert.ToInt32(ConfigurationManager.AppSettings["RemdinerMinutes"]);
+
+				if ((reminder.WeekDay == serverCurrentDateTime.DayOfWeek.ToString()) && (reminder.ReminderDateTime.Hour == serverCurrentDateTime.Hour) && (timeDifference.Minutes >= 0 && timeDifference.Minutes <= RemdinerMinutes))
+				{
+					reminderSent = SendNotification(contact, reminder, profile, serverCurrentDateTime);
+				}
+			}
+			return reminderSent;
+		}
+
+		////private bool SendWeekly(Reminder reminder, DateTime serverCurrentDateTime)
+		////{
+		////	bool reminderSent = false;
+		////	if (reminder.Recurrence == "Daily")
+		////	{
+		////		var contact = new ReminderDb().Contacts.Where(c => c.Id == reminder.ContactId).FirstOrDefault();
+		////		var profile = _db.Profiles.ToList().Find(p => p.Id == reminder.ProfileId);
+
+		////		TimeSpan timeDifference = reminder.ReminderDateTime.TimeOfDay - serverCurrentDateTime.TimeOfDay;
+		////		int RemdinerMinutes = Convert.ToInt32(ConfigurationManager.AppSettings["RemdinerMinutes"]);
+
+		////		if ((reminder.ReminderDateTime.Hour == serverCurrentDateTime.Hour) && (timeDifference.Minutes >= 0 && timeDifference.Minutes <= RemdinerMinutes))
+		////		{
+		////			reminderSent = SendNotification(contact, reminder, profile, serverCurrentDateTime);
+		////		}
+		////	}
+		////	return reminderSent;
+		////}
 
 		private bool SendNotification(Contact contact, Reminder reminder, Profile profile, DateTime serverCurrentDateTime)
 		{
@@ -131,22 +199,28 @@ namespace AppointmentReminder.Controllers
 			return reminderSent;
 		}
 
-		private string MessageToSend(Reminder reminder, Profile profile, Contact contact)
+		private string EmailMessageToSend(Reminder reminder, Profile profile, Contact contact)
 		{
 			string message = null; 
-			if (reminder.Recurrence == "Daily")
-			{
 				message = string.Format("Hi {0}, <br/> This is a reminder for you to {1} at {2}. <br/> Sincerely,<br/> {3}", contact.FirstName.Trim(), reminder.Message, reminder.ReminderDateTime.ToShortTimeString(), profile.FirstName);
-			}
 			return message;
 		}
+
+		private string SMSMessageToSend(Reminder reminder, Profile profile, Contact contact)
+		{
+			string message = null;
+
+			message = string.Format("Hi {0}, This is a reminder for you to {1} at {2}. Sincerely, {3}", contact.FirstName.Trim(), reminder.Message, reminder.ReminderDateTime.ToShortTimeString(), profile.FirstName);
+			return message;
+		}
+
 
 		private void SendEmailMessage(Reminder reminder, Profile profile, Contact contact)
 		{
 			string fromEmailAddress = profile.EmailAddress;
 			string toEmailAddress = contact.EmailAddress;
 			string emailSubject = string.Format("Reminder from {0} {1} - {2}", profile.FirstName, profile.LastName, DateTime.Now.ToString());
-			string emailBody = MessageToSend(reminder, profile, contact);
+			string emailBody = this.EmailMessageToSend(reminder, profile, contact);
 			var emailMessage = new MessageEmail();
 			emailMessage.Send(fromEmailAddress, toEmailAddress, emailSubject, emailBody);
 		}
@@ -155,7 +229,7 @@ namespace AppointmentReminder.Controllers
 		{
 			string fromPhoneNumber = profile.PhoneNumberIssued;
 			string toPhoneNumber = string.Format("1{0}", contact.PhoneNumber);
-			string message = MessageToSend(reminder, profile, contact);
+			string message = this.SMSMessageToSend(reminder, profile, contact);
 
 			string AccountSid = profile.AccountSid;
 			string AuthToken = profile.AuthToken;
@@ -236,121 +310,121 @@ namespace AppointmentReminder.Controllers
 				return currentDateTime;
 		}
 
-		public JsonResult Send()
-		{
-			var contactList = new List<SelectListItem>();
-			DateTime currentDateTime;
-			try
-			{
-				var reminders = new ReminderDb().Reminders;
+//		public JsonResult Send()
+//		{
+//			var contactList = new List<SelectListItem>();
+//			DateTime currentDateTime;
+//			try
+//			{
+//				var reminders = new ReminderDb().Reminders;
 
-				foreach (var reminder in reminders)
-				{
-					TimeSpan timeDifference;
+//				foreach (var reminder in reminders)
+//				{
+//					TimeSpan timeDifference;
 
-					var contact = new ReminderDb().Contacts.Where(c => c.Id == reminder.ContactId).FirstOrDefault();
+//					var contact = new ReminderDb().Contacts.Where(c => c.Id == reminder.ContactId).FirstOrDefault();
 
-					int prodServerTimeDifference = 0;
+//					int prodServerTimeDifference = 0;
 
-					switch (contact.TimeZone)
-					{
-						case "PST": prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["PSTOffSetHours"]); break;
-						case "MST": prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["MSTOffSetHours"]); break;
-						case "CST": prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["CSTOffSetHours"]); break;
-						case "EST": prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["ESTOffSetHours"]); break;
-					}
+//					switch (contact.TimeZone)
+//					{
+//						case "PST": prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["PSTOffSetHours"]); break;
+//						case "MST": prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["MSTOffSetHours"]); break;
+//						case "CST": prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["CSTOffSetHours"]); break;
+//						case "EST": prodServerTimeDifference = Convert.ToInt32(ConfigurationManager.AppSettings["ESTOffSetHours"]); break;
+//					}
 
-#if DEBUG
-					currentDateTime = DateTime.Now;
-#else
-					currentDateTime = DateTime.Now.AddHours(prodServerTimeDifference);
-#endif
+//#if DEBUG
+//					currentDateTime = DateTime.Now;
+//#else
+//					currentDateTime = DateTime.Now.AddHours(prodServerTimeDifference);
+//#endif
 
-					timeDifference = reminder.ReminderDateTime - currentDateTime;
-					int RemdinerMinutes = Convert.ToInt32(ConfigurationManager.AppSettings["RemdinerMinutes"]);
+//					timeDifference = reminder.ReminderDateTime - currentDateTime;
+//					int RemdinerMinutes = Convert.ToInt32(ConfigurationManager.AppSettings["RemdinerMinutes"]);
 
 
-					if (timeDifference.Seconds > 0 && timeDifference.Minutes <= RemdinerMinutes && reminder.ReminderDateTime.Date.Equals(currentDateTime.Date) && !reminder.Sent)
-					{
+//					if (timeDifference.Seconds > 0 && timeDifference.Minutes <= RemdinerMinutes && reminder.ReminderDateTime.Date.Equals(currentDateTime.Date) && !reminder.Sent)
+//					{
 
-						var profile = _db.Profiles.ToList().Find(p => p.Id == contact.ProfileId);
-						if (contact.Active && !profile.DeActivate)
-						{
-							bool reminderSent = false;
-							if (contact.SendEmail)
-							{
-								SendEmail(reminder, profile, contact);
+//						var profile = _db.Profiles.ToList().Find(p => p.Id == contact.ProfileId);
+//						if (contact.Active && !profile.DeActivate)
+//						{
+//							bool reminderSent = false;
+//							if (contact.SendEmail)
+//							{
+//								SendEmail(reminder, profile, contact);
 
-								contactList.Add(new SelectListItem()
-													{
-															Text = string.Format("{0} {1}", contact.FirstName.Trim(), contact.LastName.Trim()),
-															Value = reminder.Message
+//								contactList.Add(new SelectListItem()
+//													{
+//															Text = string.Format("{0} {1}", contact.FirstName.Trim(), contact.LastName.Trim()),
+//															Value = reminder.Message
 
-													});
-								reminderSent = true;
+//													});
+//								reminderSent = true;
 
-								var reminderHistory = new ReminderHistory();
-								reminderHistory.ContactId = contact.Id;
-								reminderHistory.Message = reminder.Message;
-								reminderHistory.ProfileId = profile.Id;
-								reminderHistory.ReminderDateTime = reminder.ReminderDateTime;
-								reminderHistory.ReminderId = reminder.Id;
-								reminderHistory.EmailSent = true;
-								reminderHistory.SMSSent = false;
-								reminderHistory.MessageSentDateTime = currentDateTime;
-								_db.ReminderHistories.Add(reminderHistory);
-								_db.Save();
-							}
+//								var reminderHistory = new ReminderHistory();
+//								reminderHistory.ContactId = contact.Id;
+//								reminderHistory.Message = reminder.Message;
+//								reminderHistory.ProfileId = profile.Id;
+//								reminderHistory.ReminderDateTime = reminder.ReminderDateTime;
+//								reminderHistory.ReminderId = reminder.Id;
+//								reminderHistory.EmailSent = true;
+//								reminderHistory.SMSSent = false;
+//								reminderHistory.MessageSentDateTime = currentDateTime;
+//								_db.ReminderHistories.Add(reminderHistory);
+//								_db.Save();
+//							}
 
-							if (contact.SendSMS)
-							{
-								SendSMS(reminder, profile, contact);
+//							if (contact.SendSMS)
+//							{
+//								SendSMS(reminder, profile, contact);
 
-								contactList.Add(new SelectListItem()
-								{
-									Text = string.Format("{0} {1}", contact.FirstName.Trim(), contact.LastName.Trim()),
-									Value = contact.Id.ToString().Trim()
-								});
+//								contactList.Add(new SelectListItem()
+//								{
+//									Text = string.Format("{0} {1}", contact.FirstName.Trim(), contact.LastName.Trim()),
+//									Value = contact.Id.ToString().Trim()
+//								});
 
-								reminderSent = true;
+//								reminderSent = true;
 
-								var reminderHistory = new ReminderHistory();
-								reminderHistory.ContactId = contact.Id;
-								reminderHistory.Message = reminder.Message;
-								reminderHistory.ProfileId = profile.Id;
-								reminderHistory.ReminderDateTime = reminder.ReminderDateTime;
-								reminderHistory.ReminderId = reminder.Id;
-								reminderHistory.EmailSent = false;
-								reminderHistory.SMSSent = true;
-								reminderHistory.MessageSentDateTime = currentDateTime;
-								_db.ReminderHistories.Add(reminderHistory);
-								_db.Save();
-							}
+//								var reminderHistory = new ReminderHistory();
+//								reminderHistory.ContactId = contact.Id;
+//								reminderHistory.Message = reminder.Message;
+//								reminderHistory.ProfileId = profile.Id;
+//								reminderHistory.ReminderDateTime = reminder.ReminderDateTime;
+//								reminderHistory.ReminderId = reminder.Id;
+//								reminderHistory.EmailSent = false;
+//								reminderHistory.SMSSent = true;
+//								reminderHistory.MessageSentDateTime = currentDateTime;
+//								_db.ReminderHistories.Add(reminderHistory);
+//								_db.Save();
+//							}
 
-							if (reminderSent)
-							{
-								_db.Reminders.ToList().Find(r => r.Id == reminder.Id).Sent = true;
-								_db.Save();
-							}
+//							if (reminderSent)
+//							{
+//								_db.Reminders.ToList().Find(r => r.Id == reminder.Id).Sent = true;
+//								_db.Save();
+//							}
 
-						}
-					}
+//						}
+//					}
 
-				}
+//				}
 
-			}
-			catch (Exception exception)
-			{
-				contactList.Add(new SelectListItem(){Selected = false, Text = exception.Message, Value = exception.InnerException.ToString()});
-			}
+//			}
+//			catch (Exception exception)
+//			{
+//				contactList.Add(new SelectListItem(){Selected = false, Text = exception.Message, Value = exception.InnerException.ToString()});
+//			}
 
-			if (contactList.Count == 0)
-			{
-				contactList.Add(new SelectListItem(){Selected = false, Text = "No appointments to send out", Value = "none"});
-			}
+//			if (contactList.Count == 0)
+//			{
+//				contactList.Add(new SelectListItem(){Selected = false, Text = "No appointments to send out", Value = "none"});
+//			}
 
-			return Json(contactList, JsonRequestBehavior.AllowGet);
-		}
+//			return Json(contactList, JsonRequestBehavior.AllowGet);
+//		}
 
 		public void SendEmail(Reminder reminder, Profile profile, Contact contact)
 		{

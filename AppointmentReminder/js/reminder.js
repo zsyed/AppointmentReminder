@@ -87,13 +87,13 @@
 		];
 		
 		$scope.weekdays = [
-			{ idweek: 'Mon' },
-			{ idweek: 'Tue' },
-			{ idweek: 'Wed' },
-			{ idweek: 'Thur' },
-			{ idweek: 'Fri' },
-			{ idweek: 'Sat' },
-			{ idweek: 'Sun' }
+			{ idweek: 'Monday' },
+			{ idweek: 'Tuesday' },
+			{ idweek: 'Wednesday' },
+			{ idweek: 'Thursday' },
+			{ idweek: 'Friday' },
+			{ idweek: 'Saturday' },
+			{ idweek: 'Sunday' }
 		];
 		
 		$scope.calendarshow = false;
