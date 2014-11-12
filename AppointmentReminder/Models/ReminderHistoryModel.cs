@@ -15,5 +15,7 @@ namespace AppointmentReminder.Models
 		public bool EmailSent { get; set; }
 		public bool SMSSent { get; set; }
 		public DateTime MessageSentDateTime { get; set; }
+		public string Recurrence { get; set; }
+		public string Weekday { get; set; }
 	}
 }
