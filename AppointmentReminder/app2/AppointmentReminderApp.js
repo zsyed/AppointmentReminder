@@ -2,6 +2,9 @@
 var appointmentReminderApp = angular.module('appointmentReminderApp', ["ngRoute", "ui.bootstrap"]);
 
 appointmentReminderApp.config(function ($routeProvider, $locationProvider) {
+	
+	$locationProvider.html5Mode(true);
+	
 	$routeProvider
 		.when("/home", {
 			templateUrl: "app2/Home.html",
@@ -60,4 +63,8 @@ appointmentReminderApp.config(function ($routeProvider, $locationProvider) {
 			controller: "reminderController"
 		})
 		.otherwise({ redirectTo: "/home" });
+	
+	//if (window.history && window.history.pushState) {
+	//	$locationProvider.html5Mode(true);
+	//}
 });
