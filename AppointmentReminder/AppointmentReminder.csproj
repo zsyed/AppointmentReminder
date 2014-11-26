@@ -251,6 +251,24 @@
     <Compile Include="Controllers\ReminderWebController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app2\AppointmentReminderApp.js" />
+    <Content Include="app2\ContactForm\contactController.js" />
+    <Content Include="app2\ContactForm\contactService.js" />
+    <Content Include="app2\ContactForm\templates\contactDelete.html" />
+    <Content Include="app2\ContactForm\templates\contacts.html" />
+    <Content Include="app2\ContactForm\templates\contactUpdate.html" />
+    <Content Include="app2\Home.html" />
+    <Content Include="app2\ProfileForm\profileController.js" />
+    <Content Include="app2\ProfileForm\profileDirective.js" />
+    <Content Include="app2\ProfileForm\profileService.js" />
+    <Content Include="app2\ProfileForm\templates\profile.html" />
+    <Content Include="app2\ProfileForm\templates\profileUpdate.html" />
+    <Content Include="app2\ReminderForm\reminderController.js" />
+    <Content Include="app2\ReminderForm\reminderService.js" />
+    <Content Include="app2\ReminderForm\templates\reminderDelete.html" />
+    <Content Include="app2\ReminderForm\templates\reminderHistory.html" />
+    <Content Include="app2\ReminderForm\templates\reminders.html" />
+    <Content Include="app2\ReminderForm\templates\reminderUpdate.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

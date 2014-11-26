@@ -1,0 +1,86 @@
+﻿<form class="form-horizontal" role="form" >
+	
+
+	<div class="form-group">
+		<label class="col-sm-3 control-label" for="ContactName">Contact Name</label>
+		<div class="col-sm-3" >
+			<select class="form-control" 
+			        data-ng-model="selectedContact" 
+			        data-ng-options="contact.name for contact in remindercontacts">
+				<option></option>
+			</select>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-3 control-label" for="Recurrence">Recurrence</label>
+		<div class="col-sm-3" >
+			<select id="ddlRecurrence" class="form-control" 
+			        data-ng-model="selectedRecurrence" 
+					ng-change="reminderRecurrenceTimeChanged()"
+			        data-ng-options="recurrence.idrecur for recurrence in recurrences">
+				<option></option>
+			</select>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div data-ng-show="calendarshow"  >
+			<label class="col-sm-3 control-label" for="Recurrence">Date</label>
+
+			<div class="col-sm-4" >
+				<datepicker data-ng-model="ReminderDate" min-date="minDate" show-weeks="false" class="well well-sm"></datepicker>
+			</div>
+
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div data-ng-show="weekdayshow"  >
+				<label class="col-sm-3 control-label" for="Recurrence">Week Day</label>
+				<div class="col-sm-3" >
+					<select id="ddlWeekday" class="form-control" 
+						data-ng-model="selectedWeekday" 
+						data-ng-options="weekday.idweek for weekday in weekdays">
+					<option></option>
+					</select>
+				</div>
+			</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-sm-3 control-label" for="Recurrence">Time</label>
+
+		<div class="col-sm-9" >
+			<timepicker data-ng-model="ReminderTime" ng-change="reminderTimeChanged()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+		</div>
+
+	</div>	
+
+	
+	<div class="form-group">
+		<label class="col-sm-3 control-label">Message</label>
+		<div class="col-sm-9" >
+			<input required type="text" placeholder="Enter Message" data-ng-model="reminder.Message"/>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-sm-3 control-label" for="TimeZone">Reminder Sent</label>
+		<div class="col-sm-9" >
+			<input type="checkbox" data-ng-model="reminder.Sent"/>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-sm-3 control-label" ></label>
+		<div class="col-sm-3" >
+			<input type="submit" class="btn btn-primary" value="Submit" data-ng-click="submitForm()" />
+		</div>
+	</div>
+
+
+</form>
+
+
+

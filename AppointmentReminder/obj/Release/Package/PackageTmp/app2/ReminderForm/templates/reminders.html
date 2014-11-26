@@ -1,0 +1,81 @@
+﻿
+<h3>Reminders</h3>
+
+<div data-ng-show="loadingreminders == true">
+	<div class="col-sm-4"><progressbar class="progress-striped active" max="200" value="200" type="warning"><i>loading... please wait..</i></progressbar></div>
+</div>
+
+<div data-ng-show="loadingreminders == false">
+<form class="form-horizontal" role="form" >
+	<div>
+		<input 
+			type="submit" 
+			class="btn btn-primary" 
+			value="Show History" 
+			data-ng-click="showHistoryReminderForm()" 
+			/>
+	</div>
+
+	<br /><br />
+		<div>
+		<input 
+			type="submit" 
+			class="btn btn-primary" 
+			value="Add New Reminder" 
+			data-ng-click="showCreateReminderForm()" 
+			/>
+	</div>
+	
+		<br/>	<br/>
+	<table class="table">
+		<thead>
+			<tr>
+				<th> <b>Contact</b></th>
+				<th> <b>Message</b></th>
+				<th> <b>Date</b></th>
+				<th> <b>Time</b></th>
+				<th> <b>Recurrence</b></th>
+				<th> <b>WeekDay</b></th>
+				<th> <b>Sent</b></th>
+				<th></th>
+			<th></th>
+
+			</tr>
+				
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="reminder in reminders">
+				<td>{{reminder.ContactName}}</td>
+				<td>{{reminder.Message}}</td>
+				<td>{{reminder.ReminderDateTime.substring(0,4) == '1901' ? "None" : reminder.ReminderDateTime | date: 'EEE MM/dd/yyyy' }}</td>
+				<td>{{reminder.ReminderDateTime | date: 'hh:mm a' }}</td>
+				<td>{{reminder.Recurrence}}</td>
+				<td>{{reminder.WeekDay}}</td>
+				<td>{{reminder.Sent == true? "Yes": "No"}}</td>
+				<td>
+					<div>
+						<input 
+						type="submit" 
+						class="btn btn-primary" 
+						value="Edit" 
+						data-ng-click="showUpdateReminderForm(reminder.Id)" 
+						/>
+					</div>
+				</td>
+				<td>
+					<div>
+						<input 
+						type="submit" 
+						class="btn btn-primary" 
+						value="Delete" 
+						data-ng-click="showDeleteReminderForm(reminder.Id)" 
+						/>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<br/>	<br/>	
+
+</form>
+	</div>

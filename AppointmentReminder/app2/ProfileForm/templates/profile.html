@@ -1,0 +1,52 @@
+﻿<form class="form-horizontal" role="form" >
+	
+	
+	<div data-ng-show="loading == true">
+		<div class="col-sm-4"><progressbar class="progress-striped active" max="200" value="200" type="warning"><i>loading... please wait..</i></progressbar></div>
+	</div>
+	<div data-ng-show="loading == false">
+		<h3>Profile</h3>
+
+		<div class="form-group" data-ng-show="isProfileIdGreaterThanZero() == false">
+			<br/><br/><br/>
+			<div >
+				<input type="submit" class="btn btn-primary" value="Create New" data-ng-click="showCreateProfileForm()" />
+			</div>
+		</div>
+	<div data-ng-show="isProfileIdGreaterThanZero() == true">
+		<div class="form-group">
+			<label class="col-sm-3 control-label" >First Name: </label>
+			<label class="control-label" >{{profile.FirstName}}</label>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label" >Last Name: </label>
+			<label class="control-label" >{{profile.LastName}}</label>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label" >Cell. Phone Number: </label>
+			<label class="control-label" >{{profile.PhoneNumber}}</label>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label" >Email Address: </label>
+			<label class="control-label" >{{profile.EmailAddress}}</label>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label" >Active: </label>
+			<label class="control-label" >{{profile.DeActivate == true? "No" : "Yes"}}</label>
+		</div>
+
+	
+		<div class="form-group">
+						<label class="col-sm-3 control-label" ></label>
+			<div class="col-sm-9" >
+				<input type="submit" class="btn btn-primary" value="Edit" data-ng-click="showUpdateProfileForm(profile.Id)" />
+			</div>
+		</div>
+	</div>
+			</div>
+</form>
+

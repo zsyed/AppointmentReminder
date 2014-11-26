@@ -14,7 +14,7 @@ namespace AppointmentReminder.Controllers
 		}
 		public IHttpActionResult GetAllReminderContacts()
 		{
-			var profile = _db.Profiles.ToList().Find(p => p.UserName == User.Identity.Name);
+			var profile = _db.Profiles.ToList().Find(p => p.UserName == "zsyed"); // == User.Identity.Name);
 			var profileContacts = _db.Contacts.Where(c => c.ProfileId == profile.Id).ToList();
 			var contacts = new List<ReminderContact>();
 			foreach (var profileContact in profileContacts)

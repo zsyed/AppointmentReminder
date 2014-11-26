@@ -38,6 +38,7 @@
 		var contactId = null;
 		var recurrence = null;
 		var weekday = null;
+		
 		$http.get("/api/ReminderWeb/" + reminderId)
 			.then(function (response) {
 				$scope.reminder = response.data;
@@ -63,14 +64,35 @@
 						keepGoing = false;
 					}
 				}
-				
-				keepGoing = true;
-				for (var i = 0; i <= $scope.weekdays.length && keepGoing; i++) {
-					if ($scope.weekdays[i].idweek == weekday) {
-						$scope.selectedWeekday = $scope.weekdays[i];
-						keepGoing = false;
+
+				if (weekday != null) {
+					keepGoing = true;
+					for (var i = 0; i <= $scope.weekdays.length && keepGoing; i++) {
+						if ($scope.weekdays[i].idweek == weekday) {
+							$scope.selectedWeekday = $scope.weekdays[i];
+							keepGoing = false;
+						}
 					}
 				}
+
+				//copy paste code must be refactored.
+
+				if (recurrence == 'Once') {
+					$scope.calendarshow = true;
+					$scope.weekdayshow = false;
+				}
+
+				if (recurrence == 'Daily') {
+					$scope.calendarshow = false;
+					$scope.weekdayshow = false;
+				}
+
+				if (recurrence == 'Weekly') {
+					$scope.calendarshow = false;
+					$scope.weekdayshow = true;
+				}
+
+				//copy paste code
 
 			
 			});
@@ -87,13 +109,13 @@
 		];
 		
 		$scope.weekdays = [
-			{ idweek: 'Mon' },
-			{ idweek: 'Tue' },
-			{ idweek: 'Wed' },
-			{ idweek: 'Thur' },
-			{ idweek: 'Fri' },
-			{ idweek: 'Sat' },
-			{ idweek: 'Sun' }
+			{ idweek: 'Monday' },
+			{ idweek: 'Tuesday' },
+			{ idweek: 'Wednesday' },
+			{ idweek: 'Thursday' },
+			{ idweek: 'Friday' },
+			{ idweek: 'Saturday' },
+			{ idweek: 'Sunday' }
 		];
 		
 		$scope.calendarshow = false;

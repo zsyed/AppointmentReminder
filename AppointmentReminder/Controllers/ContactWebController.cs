@@ -19,14 +19,14 @@ namespace AppointmentReminder.Controllers
 
 		public IQueryable<Contact> GetAllContacts()
 		{
-			var profile = _db.Profiles.ToList().Find(p => p.UserName == User.Identity.Name);
+			var profile = _db.Profiles.ToList().Find(p => p.UserName == "zsyed"); // == User.Identity.Name);
 			var contacts = new ReminderDb().Contacts.Where(c => c.ProfileId == profile.Id).OrderBy(c => c.LastName);
 			return contacts;
 		}
 
 		public Contact Get(int Id)
 		{
-			var profile = _db.Profiles.ToList().Find(p => p.UserName == User.Identity.Name);
+			var profile = _db.Profiles.ToList().Find(p => p.UserName == "zsyed"); // == User.Identity.Name);
 			var contact = new ReminderDb().Contacts.Where(c => c.ProfileId == profile.Id).ToList().Find(c => c.Id == Id);
 			return contact;
 		}
@@ -80,7 +80,7 @@ namespace AppointmentReminder.Controllers
 		{
 			try
 			{
-				var profile = _db.Profiles.ToList().Find(p => p.UserName == User.Identity.Name);
+				var profile = _db.Profiles.ToList().Find(p => p.UserName == "zsyed"); // == User.Identity.Name);
 				contact.ProfileId = profile.Id;
 				contact.Active = true;
 				_db.Contacts.Add(contact);

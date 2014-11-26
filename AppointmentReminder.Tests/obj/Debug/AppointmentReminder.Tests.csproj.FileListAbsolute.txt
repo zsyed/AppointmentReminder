@@ -191,12 +191,9 @@ C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Microsoft.D
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Newtonsoft.Json.dll
-C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Net.Http.Formatting.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Spatial.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.Helpers.dll
-C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.Http.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.Http.OData.dll
-C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.Http.WebHost.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.Mvc.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.Razor.dll
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.WebPages.Deployment.dll
@@ -220,10 +217,7 @@ C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Appointment
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\EntityFramework.xml
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\EntityFramework.SqlServer.xml
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\Newtonsoft.Json.xml
-C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Net.Http.Formatting.xml
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.Helpers.xml
-C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.Http.xml
-C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.Http.WebHost.xml
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.Mvc.xml
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.Razor.xml
 C:\practice\AppointmentReminder1\AppointmentReminder.Tests\bin\Debug\System.Web.WebPages.xml

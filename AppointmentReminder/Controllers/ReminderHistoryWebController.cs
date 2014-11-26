@@ -22,7 +22,7 @@ namespace AppointmentReminder.Controllers
 		{
 			try
 			{
-				var profile = _db.Profiles.ToList().Find(p => p.UserName == User.Identity.Name);
+				var profile = _db.Profiles.ToList().Find(p => p.UserName == "zsyed"); // == User.Identity.Name);
 				var reminderHistories = _db.ReminderHistories.Where(rh => rh.ProfileId == profile.Id).OrderByDescending(rh => rh.MessageSentDateTime);
 				var reminderHistoryModels = new List<ReminderHistoryModel>();
 				foreach (var reminderHistory in reminderHistories)

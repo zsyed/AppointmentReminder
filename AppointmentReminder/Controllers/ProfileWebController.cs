@@ -20,7 +20,7 @@ namespace AppointmentReminder.Controllers
 
 		public Profile Get()
 		{
-			string userName = User.Identity.Name;
+			string userName = "zsyed"; //  User.Identity.Name;
 			var profile = _db.GetProfile(userName);
 			return profile;
 		}

@@ -1,0 +1,72 @@
+﻿
+<div data-ng-show="loadingcontacts == true">
+	<div class="col-sm-4"><progressbar class="progress-striped active" max="200" value="200" type="warning"><i>loading... please wait..</i></progressbar></div>
+</div>
+
+<div data-ng-show="loadingcontacts == false">
+<form class="form-horizontal" role="form" >
+	<div>
+		<input 
+			type="submit" 
+			class="btn btn-primary" 
+			value="Add New Contact" 
+			data-ng-click="showCreateContactForm()" 
+			/>
+	</div>
+	
+		<br/>	<br/>
+	<table class="table">
+		<thead>
+			<tr>
+			<th> <b>First Name</b></th>
+			<th> <b>Last Name</b></th>
+			<th> <b>Phone Number</b></th>
+			<th> <b>Email Address</b></th>
+			<th> <b>Time Zone</b></th>
+			<th> <b>Active</b></th>
+			<th> <b>Email</b></th>
+			<th> <b>SMS</b></th>
+			<th></th>
+			<th></th>
+			<th></th>
+
+			</tr>
+				
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="contact in contacts">
+				<td>{{contact.FirstName}}</td>
+				<td>{{contact.LastName}}</td>
+				<td>{{contact.PhoneNumber}}</td>
+				<td>{{contact.EmailAddress}}</td>
+				<td>{{contact.TimeZone}}</td>
+				<td>{{contact.Active == true? "Yes": "No"}}</td>
+				<td>{{contact.SendEmail == true? "Yes": "No"}}</td>
+				<td>{{contact.SendSMS == true? "Yes": "No"}}</td>
+				<td>
+					<div>
+						<input 
+						type="submit" 
+						class="btn btn-primary" 
+						value="Edit" 
+						data-ng-click="showUpdateContactForm(contact.Id)" 
+						/>
+					</div>
+				</td>
+				<td>
+					<div>
+						<input 
+						type="submit" 
+						class="btn btn-primary" 
+						value="Delete" 
+						data-ng-click="showDeleteContactForm(contact.Id)" 
+						/>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<br/>	<br/>	
+
+</form>
+	</div>

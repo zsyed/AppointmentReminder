@@ -1,0 +1,37 @@
+﻿<h2>Reminder History</h2>
+
+</br>
+
+<div data-ng-show="loadingreminderhistories == true">
+	<div class="col-sm-4"><progressbar class="progress-striped active" max="200" value="200" type="warning"><i>loading... please wait..</i></progressbar></div>
+</div>
+
+<div data-ng-show="loadingreminderhistories == false">
+	<table class="table">
+		<thead>
+			<tr>
+				<th> <b>Recurrence</b></th>
+				<th> <b>Week Day</b></th>
+				<th> <b>Scheduled</b></th>
+				<th> <b>Sent</b></th>
+				<th> <b>Message</b></th>
+				<th> <b>Contact</b></th>
+				<th> <b>Type</b></th>
+			</tr>
+				
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="reminderhistory in reminderhistories">
+				
+				<td>{{reminderhistory.Recurrence}}</td>
+				<td>{{reminderhistory.Weekday}}</td>
+				<td>{{reminderhistory.ReminderDateTime | date: 'EEE MM/dd/yyyy hh:mm a'}}</td>
+				<td>{{reminderhistory.MessageSentDateTime | date: 'EEE MM/dd/yyyy hh:mm a'}}</td>
+				<td>{{reminderhistory.Message}}</td>
+				<td>{{reminderhistory.ContactName}}</td>
+				<td>{{reminderhistory.EmailSent == true? "Email": reminderhistory.SMSSent == true? "SMS": "None"}}</td>
+
+			</tr>
+		</tbody>
+	</table>
+	</div>

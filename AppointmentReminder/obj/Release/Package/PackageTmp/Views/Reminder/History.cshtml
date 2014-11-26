@@ -14,24 +14,26 @@
 	<table class="table">
 		<thead>
 			<tr>
+				<th> <b>Recurrence</b></th>
+				<th> <b>Week Day</b></th>
 				<th> <b>Scheduled</b></th>
 				<th> <b>Sent</b></th>
 				<th> <b>Message</b></th>
 				<th> <b>Contact</b></th>
-				<th> <b>Email</b></th>
-				<th> <b>SMS</b></th>
-
+				<th> <b>Type</b></th>
 			</tr>
 				
 		</thead>
 		<tbody>
 			<tr data-ng-repeat="reminderhistory in reminderhistories">
+				
+				<td>{{reminderhistory.Recurrence}}</td>
+				<td>{{reminderhistory.Weekday}}</td>
 				<td>{{reminderhistory.ReminderDateTime | date: 'EEE MM/dd/yyyy hh:mm a'}}</td>
 				<td>{{reminderhistory.MessageSentDateTime | date: 'EEE MM/dd/yyyy hh:mm a'}}</td>
 				<td>{{reminderhistory.Message}}</td>
 				<td>{{reminderhistory.ContactName}}</td>
-				<td>{{reminderhistory.EmailSent == true? "Yes": "No"}}</td>
-				<td>{{reminderhistory.SMSSent == true? "Yes": "No"}}</td>
+				<td>{{reminderhistory.EmailSent == true? "Email": reminderhistory.SMSSent == true? "SMS": "None"}}</td>
 
 			</tr>
 		</tbody>

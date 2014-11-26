@@ -43,7 +43,7 @@ namespace AppointmentReminder.Controllers
 
 		public List<ReminderModel> GetAllReminders()
 		{
-			var profile = _db.Profiles.ToList().Find(p => p.UserName == User.Identity.Name);
+			var profile = _db.Profiles.ToList().Find(p => p.UserName == "zsyed"); // == User.Identity.Name);
 			var reminders = new ReminderDb().Reminders.Where(r => r.ProfileId == profile.Id).OrderByDescending(r => r.ReminderDateTime);
 
 			var remindersModel = new List<ReminderModel>();
@@ -69,7 +69,7 @@ namespace AppointmentReminder.Controllers
 
 		public ReminderModel Get(int Id)
 		{
-			var profile = _db.Profiles.ToList().Find(p => p.UserName == User.Identity.Name);
+			var profile = _db.Profiles.ToList().Find(p => p.UserName == "zsyed"); // == User.Identity.Name);
 			var reminder = _db.Reminders.Where(p => p.ProfileId == profile.Id).ToList().Find(r => r.Id == Id);
 			var contact = _db.Contacts.ToList().Find(c => c.Id == reminder.ContactId);
 			var reminderModel = new ReminderModel()
@@ -114,7 +114,7 @@ namespace AppointmentReminder.Controllers
 		{
 			try
 			{
-				var profile = _db.Profiles.ToList().Find(p => p.UserName == User.Identity.Name);
+				var profile = _db.Profiles.ToList().Find(p => p.UserName == "zsyed"); // == User.Identity.Name);
 				var reminder = new Reminder();
 				reminder.ProfileId = profile.Id;
 				reminder.ContactId = reminderModel.ContactId;
